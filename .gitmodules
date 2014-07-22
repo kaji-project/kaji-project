@@ -10,3 +10,6 @@
 [submodule "packages/shinken"]
 	path = packages/shinken
 	url = https://alioth.debian.org/anonscm/git/pkg-shinken/shinken.git
+[submodule "packages/shinken-module-logstore-sqlite"]
+	path = packages/shinken-module-logstore-sqlite
+	url = https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-logstore-sqlite.git
