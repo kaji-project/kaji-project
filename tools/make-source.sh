@@ -16,4 +16,6 @@ do
     cd $package
     quilt pop -a || true
     debuild -us -uc
+    dh_clean
+    cd ..
 done
