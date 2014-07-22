@@ -4,3 +4,6 @@
 [submodule "packages/shinken-module-livestatus"]
 	path = packages/shinken-module-livestatus
 	url = https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-livestatus.git
+[submodule "packages/shinken-module-graphite"]
+	path = packages/shinken-module-graphite
+	url = https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-graphite.git
