@@ -26,3 +26,22 @@ origin    git@github.com:kaji-project/shinken-module-livestatus.git (push)
 upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-livestatus.git (fetch)
 upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-livestatus.git (push)
 ```
+
+## Workflow: add a package
+```
+$ cd packages
+$ git submodule add https://alioth.debian.org/anonscm/git/pkg-shinken/MY-PACKAGE.git
+$ cd MY-PACKAGE
+$ git remote rename origin upstream
+Create repo MY-PACKAGE on GitHub
+$ git remote add origin git@github.com:kaji-project/MY-PACKAGE.git
+$ git push -u origin master
+$ git checkout -b kaji
+$ quilt push -a
+Do your modifications, be sure to use quilt, commit them
+$ quilt pop -a
+$ export DEBFULLNAME='Your name'
+$ export DEBEMAIL='yourem@il.address'
+$ dch [--no-auto-nmu]
+Be sure to use a correct version number and to describe your changes.
+```
