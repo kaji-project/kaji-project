@@ -7,3 +7,6 @@
 [submodule "packages/shinken-module-graphite"]
 	path = packages/shinken-module-graphite
 	url = https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-graphite.git
+[submodule "packages/shinken"]
+	path = packages/shinken
+	url = https://alioth.debian.org/anonscm/git/pkg-shinken/shinken.git
