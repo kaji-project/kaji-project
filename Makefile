@@ -4,6 +4,7 @@ clean:
 	rm -f packages/*.deb
 	rm -f packages/*.tar.gz
 	rm -f packages/*.tar.xz
+	rm -f packages/*.dsc
 
 deb: clean
 	tools/make-source.sh
