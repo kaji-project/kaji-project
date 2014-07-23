@@ -16,3 +16,6 @@
 [submodule "packages/shinken-module-booster-nrpe"]
 	path = packages/shinken-module-booster-nrpe
 	url = https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-booster-nrpe.git
+[submodule "packages/shinken-module-simple-log"]
+	path = packages/shinken-module-simple-log
+	url = https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-simple-log.git
