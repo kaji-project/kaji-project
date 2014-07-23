@@ -45,3 +45,11 @@ $ export DEBEMAIL='yourem@il.address'
 $ dch [--no-auto-nmu]
 Be sure to use a correct version number and to describe your changes.
 ```
+
+## TODO
+
+* Set-up Nagvis, Debian upstream being an SVN repo.
+  Solution: git mirror of the SVN repo, and submodule added.
+* Find last updates about Adagios' packaging
+  https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=744818
+* What do we do with Graphite?
