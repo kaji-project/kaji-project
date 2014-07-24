@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#set -e
+set -e
 
 BUILD_PACKAGE="dpkg-buildpackage -us -uc --source-option=-Zgzip"
 
