@@ -3,19 +3,19 @@
 	url = git@github.com:kaji-project/shinken-module-pickle-retention-file-generic.git
 [submodule "packages/shinken-module-livestatus"]
 	path = packages/shinken-module-livestatus
-	url = https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-livestatus.git
+	url = git@github.com:kaji-project/shinken-module-livestatus.git
 [submodule "packages/shinken-module-graphite"]
 	path = packages/shinken-module-graphite
-	url = https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-graphite.git
+	url = git@github.com:kaji-project/shinken-module-graphite.git
 [submodule "packages/shinken"]
 	path = packages/shinken
-	url = https://alioth.debian.org/anonscm/git/pkg-shinken/shinken.git
+	url = git@github.com:kaji-project/shinken.git
 [submodule "packages/shinken-module-logstore-sqlite"]
 	path = packages/shinken-module-logstore-sqlite
-	url = https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-logstore-sqlite.git
+	url = git@github.com:kaji-project/shinken-module-logstore-sqlite.git
 [submodule "packages/shinken-module-booster-nrpe"]
 	path = packages/shinken-module-booster-nrpe
-	url = https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-booster-nrpe.git
+	url = git@github.com:kaji-project/shinken-module-booster-nrpe.git
 [submodule "packages/shinken-module-simple-log"]
 	path = packages/shinken-module-simple-log
-	url = https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-simple-log.git
+	url = git@github.com:kaji-project/shinken-module-simple-log.git
