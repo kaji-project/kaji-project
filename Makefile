@@ -6,8 +6,8 @@ clean:
 	rm -f packages/*.tar.xz
 	rm -f packages/*.dsc
 
-deb: clean
-	tools/make-source.sh
+packages: clean
+	tools/make-packages.sh
 
 obs:
 	tools/update-obs-packages.sh
