@@ -8,3 +8,6 @@ clean:
 
 deb: clean
 	tools/make-source.sh
+
+obs:
+	tools/update-obs-packages.sh
