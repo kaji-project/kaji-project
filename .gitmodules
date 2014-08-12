@@ -19,3 +19,6 @@
 [submodule "packages/shinken-module-simple-log"]
 	path = packages/shinken-module-simple-log
 	url = git@github.com:kaji-project/shinken-module-simple-log.git
+[submodule "packages/nagvis"]
+	path = packages/nagvis
+	url = git://anonscm.debian.org/pkg-nagios/pkg-nagvis.git

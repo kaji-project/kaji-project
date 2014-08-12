@@ -2,23 +2,34 @@
 
 set -e
 
+BASEDIR=$(dirname $(readlink -f "$0"))/..
+BUILD_AREA=$BASEDIR/build-area
 BUILD_PACKAGE="dpkg-buildpackage -us -uc --source-option=-Zgzip"
 
-cd packages
+cd $BASEDIR
 
-for package in `ls`
+rm -rf $BUILD_AREA
+mkdir -p $BUILD_AREA
+
+export QUILT_PATCHES=debian/patches
+
+for package in `ls -1 $BASEDIR/packages`
 do
-    cd $package
+    echo "============================================================="
+    echo "             Prepare $package"
+    echo "============================================================="
+    cp -r $BASEDIR/packages/$package $BUILD_AREA
+    cd $BUILD_AREA/$package
     git checkout kaji
     # quilt will return 2 if the patches are already applied
     quilt push -a || true
     cd ..
-    upstream_version=$(head $package/debian/changelog -n 1 | awk '{print $2}' | sed 's/^(\(.*\)-.*)$/\1/')
-    tar -czf ${package}_${upstream_version}.orig.tar.gz $package --exclude=$package/debian/ --exclude=$package/.git/
+    upstream_version=$(head $package/debian/changelog -n 1 | awk '{print $2}' | sed 's/^(\([0-9]:\)\?\(.*\)-.*)$/\2/')
+    tar -czf ${package}_${upstream_version}.orig.tar.gz $package --exclude=$package/debian/ --exclude=$package/.git/ --exclude=$package/.pc/
     cd $package
     quilt pop -a || true
     $BUILD_PACKAGE
-    lintian
+    lintian || true
     dh_clean
-    cd ..
+    cd $BASEDIR
 done
