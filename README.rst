@@ -50,17 +50,15 @@ To get dev environment, you need to clone the meta repository and all submodules
 Add a package
 ~~~~~~~~~~~~~
 
-::
-    $ cd packages
-    $ git submodule add https://alioth.debian.org/anonscm/git/pkg-shinken/MY-PACKAGE.git
-    $ cd MY-PACKAGE
-    $ git remote rename origin upstream
-
-Create repo MY-PACKAGE on GitHub
+Create repo MY-PACKAGE on GitHub and on openSUSE Build Service
 
 ::
 
-    $ git remote add origin git@github.com:kaji-project/MY-PACKAGE.git
+    $ git submodule add git@github.com:kaji-project/shinken-module-mod-influxdb.git packages/shinken-module-mod-influxdb
+    $ cd packages/shinken-module-mod-influxdb
+    $ git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-mod-influxdb.git
+    $ git fetch --all
+    $ git reset --hard  upstream/master
     $ git push -u origin master
     $ git checkout -b kaji
     $ export QUILT_PATCHES=debian/patches
@@ -77,9 +75,31 @@ Do your modifications, be sure to use quilt, commit them
 
 Be sure to use a correct version number and to describe your changes.
 
-.. note::
-    Don't forget to put the kaji-project repository URL in the .gitmodules located at the root of meta repository
-    
+::
+
+    $ git push origin kaji
+
+
+Then commit the submodule on the meta repository
+
+::
+
+    $ cd ../..
+    $ git submodule add git@github.com:kaji-project/shinken-module-mod-influxdb.git packages/shinken-module-mod-influxdb
+    $ git add packages/shinken-module-mod-influxdb
+    $ git commit -m "Add shinken-module-mod-influxdb repo"
+    $ git push origin master
+
+Add the upstream repository in file ``tools/add_upstream_branches.sh`` like this:
+
+::
+
+    # shinken-module-mod-influxdb
+    cd ${BASEDIR}/packages/shinken-module-mod-influxdb
+    git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-mod-influxdb.git
+
+ 
+
 
 Get a new package (new submodule)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -127,7 +147,15 @@ Build packages
 
 ::
 
-    $ tools/tools/make-packages.sh
+    $ tools/make-packages.sh
+
+
+Send packages to openSUSE Build Service
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+    $ tools/update-obs-packages.sh
 
 
 TODO
