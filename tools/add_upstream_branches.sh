@@ -26,4 +26,9 @@ git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinke
 # shinken-module-simple-log
 cd ${BASEDIR}/packages/shinken-module-simple-log
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-simple-log.git
-
+# shinken-module-mod-influxdb
+cd ${BASEDIR}/packages/shinken-module-mod-influxdb
+git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-mod-influxdb.git
+# pynag
+cd ${BASEDIR}/packages/pynag
+git remote add upstream https://github.com/savoirfairelinux/pynag.git

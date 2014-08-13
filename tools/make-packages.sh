@@ -21,6 +21,12 @@ do
     cp -r $BASEDIR/packages/$package $BUILD_AREA
     cd $BUILD_AREA/$package
     git checkout kaji
+    if [[ -L "debian" ]]
+    then
+        # debian is a symlink to debian.upstream (for pynag and adagios)
+        rm -f debian 
+        cp -r debian.upstream debian
+    fi
     # quilt will return 2 if the patches are already applied
     quilt push -a || true
     cd ..

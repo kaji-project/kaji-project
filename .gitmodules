@@ -25,3 +25,6 @@
 [submodule "packages/shinken-module-mod-influxdb"]
 	path = packages/shinken-module-mod-influxdb
 	url = git@github.com:kaji-project/shinken-module-mod-influxdb.git
+[submodule "packages/pynag"]
+	path = packages/pynag
+	url = git@github.com:kaji-project/pynag.git
