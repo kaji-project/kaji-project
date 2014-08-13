@@ -8,7 +8,7 @@ function obs_push {
 
     # Check if the OBS orig and the current orig are different
     rm -rf /tmp/${1}_OBS_ORIG && mkdir /tmp/${1}_OBS_ORIG && tar -xf ${OBS_REPO}/${1}/${1}*.orig.tar.gz -C /tmp/${1}_OBS_ORIG --force-local
-    diff -r ${2}/${1}/ /tmp/${1}_OBS_ORIG/${1}/ --exclude=debian --exclude=.git*
+    diff -r ../packages/${1}/ /tmp/${1}_OBS_ORIG/${1}-*/ --exclude=debian --exclude=.git*
 
     # Only update if the source has changed
     if [ $? -ne 0 ]
@@ -20,12 +20,12 @@ function obs_push {
 
         # Copy the new files
         ## .deb
-        cp $2/$1_*.tar.gz ${DIR}/${OBS_REPO}/$1/
-        cp $2/$1_*.dsc ${DIR}/${OBS_REPO}/$1/
-        cp $2/$1_*.changes ${DIR}/${OBS_REPO}/$1/
+        cp ../build-area/$1_*.tar.gz ${DIR}/${OBS_REPO}/$1/
+        cp ../build-area/$1_*.dsc ${DIR}/${OBS_REPO}/$1/
+        cp ../build-area/$1_*.changes ${DIR}/${OBS_REPO}/$1/
         ## .rpm
-        cp -f $2/$1/*.spec ${DIR}/${OBS_REPO}/$1/
-        cp -f $2/$1/debian/patches/* ${DIR}/${OBS_REPO}/$1/
+        cp -f ../packages/$1/*.spec ${DIR}/${OBS_REPO}/$1/
+        cp -f ../packages/$1/debian/patches/* ${DIR}/${OBS_REPO}/$1/
 
         # Add the changes and commit
         osc addremove ${DIR}/${OBS_REPO}/$1/*
@@ -49,4 +49,5 @@ do
     obs_push $package "../packages/"
 done
 
+cd ..
 rm -r obs.tmp
