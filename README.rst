@@ -43,6 +43,8 @@ To get dev environment, you need to clone the meta repository and all submodules
 ::
 
     $ git clone git@github.com:kaji-project/meta.git --recursive
+    $ cd meta
+    $ ./tools/add_upstream_branches.sh
 
 
 Add a package
@@ -53,19 +55,31 @@ Add a package
     $ git submodule add https://alioth.debian.org/anonscm/git/pkg-shinken/MY-PACKAGE.git
     $ cd MY-PACKAGE
     $ git remote rename origin upstream
-    Create repo MY-PACKAGE on GitHub
+
+Create repo MY-PACKAGE on GitHub
+
+::
+
     $ git remote add origin git@github.com:kaji-project/MY-PACKAGE.git
     $ git push -u origin master
     $ git checkout -b kaji
     $ export QUILT_PATCHES=debian/patches
     $ quilt push -a
-    Do your modifications, be sure to use quilt, commit them
+
+Do your modifications, be sure to use quilt, commit them
+
+::
+
     $ quilt pop -a
     $ export DEBFULLNAME='Your name'
     $ export DEBEMAIL='yourem@il.address'
     $ dch [--no-auto-nmu]
 
 Be sure to use a correct version number and to describe your changes.
+
+.. note::
+    Don't forget to put the kaji-project repository URL in the .gitmodules located at the root of meta repository
+    
 
 Get a new package (new submodule)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
