@@ -21,4 +21,4 @@
 	url = git@github.com:kaji-project/shinken-module-simple-log.git
 [submodule "packages/nagvis"]
 	path = packages/nagvis
-    url = git@github.com:kaji-project/nagvis.git
+	url = git@github.com:kaji-project/nagvis.git
