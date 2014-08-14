@@ -8,7 +8,6 @@ BUILD_PACKAGE="dpkg-buildpackage -us -uc --source-option=-Zgzip"
 
 cd $BASEDIR
 
-rm -rf $BUILD_AREA
 mkdir -p $BUILD_AREA
 
 export QUILT_PATCHES=debian/patches
@@ -25,7 +24,7 @@ do
     then
         # debian is a symlink to debian.upstream (for pynag and adagios)
         rm -f debian 
-        cp -r debian.upstream debian
+        mv debian.upstream debian
     fi
     # quilt will return 2 if the patches are already applied
     quilt push -a || true

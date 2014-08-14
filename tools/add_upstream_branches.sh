@@ -32,3 +32,6 @@ git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinke
 # pynag
 cd ${BASEDIR}/packages/pynag
 git remote add upstream https://github.com/savoirfairelinux/pynag.git
+# adagios
+cd ${BASEDIR}/packages/adagios
+git remote add upstream https://github.com/savoirfairelinux/adagios.git

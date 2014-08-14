@@ -147,7 +147,7 @@ Build packages
 
 ::
 
-    $ tools/make-packages.sh
+    $ make packages
 
 
 Send packages to openSUSE Build Service
@@ -155,7 +155,7 @@ Send packages to openSUSE Build Service
 
 ::
 
-    $ tools/update-obs-packages.sh
+    $ make obs
 
 
 TODO
