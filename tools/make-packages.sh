@@ -27,12 +27,11 @@ do
         mv debian.upstream debian
     fi
     # quilt will return 2 if the patches are already applied
-    quilt push -a || true
+    quilt pop -a || true
     cd ..
     upstream_version=$(head $package/debian/changelog -n 1 | awk '{print $2}' | sed 's/^(\([0-9]:\)\?\(.*\)-.*)$/\2/')
-    tar -czf ${package}_${upstream_version}.orig.tar.gz $package --exclude=$package/debian/ --exclude=$package/.git/ --exclude=$package/.pc/
+    tar -czf ${package}_${upstream_version}.orig.tar.gz $package --exclude=$package/debian/ --exclude=$package/.git/ --exclude=$package/.pc/ --exclude=$package/.*.swp --exclude=$pacakge/*.egg-info
     cd $package
-    quilt pop -a || true
     $BUILD_PACKAGE
     lintian || true
     dh_clean

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+BASEDIR=$(dirname $(readlink -f "$0"))/..
+
 # first arg: name of the obs package
 # second arg: path of the source files
 function obs_push {
@@ -8,8 +10,9 @@ function obs_push {
 
     # Check if the OBS orig and the current orig are different
     rm -rf /tmp/${1}_OBS_ORIG && mkdir /tmp/${1}_OBS_ORIG && tar -xf ${OBS_REPO}/${1}/${1}*.orig.tar.gz -C /tmp/${1}_OBS_ORIG --force-local
-    diff -r ../packages/${1}/ /tmp/${1}_OBS_ORIG/${1}-*/ --exclude=debian --exclude=.git*
+    diff -r ${BASEDIR}/build-area/${1}/ /tmp/${1}_OBS_ORIG/${1}/ --exclude=debian --exclude=.git* --exclude=*.pyc --exclude=build --exclude=.pc --exclude=.*.swp --exclude=*.egg-info
 
+    
     # Only update if the source has changed
     if [ $? -ne 0 ]
     then
