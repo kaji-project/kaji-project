@@ -35,7 +35,6 @@ do
     git-buildpackage -tc -us -uc --git-debian-branch=kaji --git-export-dir=../../build-area || true
 
     # quilt will return 2 if the patches are already applied
-
 #    quilt push -a || true
 #    cd ..
 #    upstream_version=$(head $package/debian/changelog -n 1 | awk '{print $2}' | sed 's/^(\([0-9]:\)\?\(.*\)-.*)$/\2/')
@@ -45,5 +44,6 @@ do
 #    $BUILD_PACKAGE
 #    lintian || true
 #    dh_clean
+
     cd $BASEDIR
 done

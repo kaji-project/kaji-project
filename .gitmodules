@@ -31,3 +31,9 @@
 [submodule "packages/adagios"]
 	path = packages/adagios
 	url = git@github.com:kaji-project/adagios.git
+[submodule "packages/kaji"]
+	path = packages/kaji
+	url = git@github.com:kaji-project/kaji.git
+[submodule "packages/influxdb-python"]
+	path = packages/influxdb-python
+	url = git@github.com:kaji-project/influxdb-python.git
