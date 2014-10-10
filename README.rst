@@ -166,3 +166,9 @@ TODO
 * Find last updates about Adagios' packaging
   https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=744818
 * What do we do with Graphite?
+
+
+References
+==========
+
+* https://people.debian.org/~calvin/unofficial/

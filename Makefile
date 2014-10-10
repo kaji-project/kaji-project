@@ -1,3 +1,6 @@
+dev_env:
+	tools/prepare_dev_env.sh
+
 clean:
 	rm -rf build-area
 
