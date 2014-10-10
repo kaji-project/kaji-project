@@ -11,7 +11,7 @@
 	path = packages/shinken
 	url = git@github.com:kaji-project/shinken.git
 [submodule "packages/shinken-module-logstore-sqlite"]
-	path = packages/shinken-module-logstore-sqlite
+	path = packages/shinken-mod-logstore-sqlite
 	url = git@github.com:kaji-project/shinken-module-logstore-sqlite.git
 [submodule "packages/shinken-module-booster-nrpe"]
 	path = packages/shinken-mod-booster-nrpe
