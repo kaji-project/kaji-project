@@ -1,28 +1,28 @@
-[submodule "packages/shinken-module-pickle-retention-file-generic"]
+[submodule "packages/shinken-mod-pickle-retention-file-generic"]
 	path = packages/shinken-mod-pickle-retention-file-generic
 	url = git@github.com:kaji-project/shinken-module-pickle-retention-file-generic.git
-[submodule "packages/shinken-module-livestatus"]
+[submodule "packages/shinken-mod-livestatus"]
 	path = packages/shinken-mod-livestatus
 	url = git@github.com:kaji-project/shinken-mod-livestatus.git
-[submodule "packages/shinken-module-graphite"]
+[submodule "packages/shinken-mod-graphite"]
 	path = packages/shinken-module-graphite
 	url = git@github.com:kaji-project/shinken-module-graphite.git
 [submodule "packages/shinken"]
 	path = packages/shinken
 	url = git@github.com:kaji-project/shinken.git
-[submodule "packages/shinken-module-logstore-sqlite"]
+[submodule "packages/shinken-mod-logstore-sqlite"]
 	path = packages/shinken-mod-logstore-sqlite
 	url = git@github.com:kaji-project/shinken-mod-logstore-sqlite.git
-[submodule "packages/shinken-module-booster-nrpe"]
+[submodule "packages/shinken-mod-booster-nrpe"]
 	path = packages/shinken-mod-booster-nrpe
 	url = git@github.com:kaji-project/shinken-mod-booster-nrpe.git
-[submodule "packages/shinken-module-simple-log"]
+[submodule "packages/shinken-mod-simple-log"]
 	path = packages/shinken-mod-simple-log
 	url = git@github.com:kaji-project/shinken-module-simple-log.git
 [submodule "packages/nagvis"]
 	path = packages/nagvis
 	url = git@github.com:kaji-project/nagvis.git
-[submodule "packages/shinken-module-mod-influxdb"]
+[submodule "packages/shinken-mod-mod-influxdb"]
 	path = packages/shinken-mod-influxdb
 	url = git@github.com:kaji-project/shinken-module-mod-influxdb.git
 [submodule "packages/pynag"]
