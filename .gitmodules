@@ -1,5 +1,5 @@
 [submodule "packages/shinken-module-pickle-retention-file-generic"]
-	path = packages/shinken-module-pickle-retention-file-generic
+	path = packages/shinken-mod-pickle-retention-file-generic
 	url = git@github.com:kaji-project/shinken-module-pickle-retention-file-generic.git
 [submodule "packages/shinken-module-livestatus"]
 	path = packages/shinken-mod-livestatus
