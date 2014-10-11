@@ -15,6 +15,10 @@ export QUILT_PATCHES=debian/patches
 
 for package in `ls -1 $BASEDIR/packages`
 do
+    if [[ "$package" == "build-area" ]]
+    then
+        continue
+    fi
     echo "============================================================="
     echo "             Prepare $package"
     echo "============================================================="
