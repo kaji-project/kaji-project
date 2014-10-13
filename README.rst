@@ -45,6 +45,7 @@ To get dev environment, you need to clone the meta repository and all submodules
     $ git clone git@github.com:kaji-project/meta.git --recursive
     $ cd meta
     $ ./tools/add_upstream_branches.sh
+    $ make dev_env
 
 
 Add a package
@@ -54,7 +55,7 @@ Create repo MY-PACKAGE on GitHub and on openSUSE Build Service
 
 ::
 
-    $ git submodule add git@github.com:kaji-project/shinken-module-mod-influxdb.git packages/shinken-module-mod-influxdb
+    $ git submodule add git@github.com:kaji-project/shinken-mod-influxdb.git packages/shinken-mod-influxdb
     $ cd packages/shinken-module-mod-influxdb
     $ git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-mod-influxdb.git
     $ git fetch --all
