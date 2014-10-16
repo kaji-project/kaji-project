@@ -27,27 +27,27 @@ cd ${BASEDIR}/packages/shinken
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken.git
 git fetch --all
 # shinken-mod-booster-nrpe
-cd ${BASEDIR}/packages/shinken-module-booster-nrpe
+cd ${BASEDIR}/packages/shinken-mod-booster-nrpe
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-booster-nrpe.git
 git fetch --all
 # shinken-mod-livestatus
-cd ${BASEDIR}/packages/shinken-module-livestatus
+cd ${BASEDIR}/packages/shinken-mod-livestatus
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-livestatus.git
 git fetch --all
 # shinken-mod-logstore-sqlite
-cd ${BASEDIR}/packages/shinken-module-logstore-sqlite
+cd ${BASEDIR}/packages/shinken-mod-logstore-sqlite
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-logstore-sqlite.git
 git fetch --all
 # shinken-mod-pickle-retention-file-generic
-cd ${BASEDIR}/packages/shinken-module-pickle-retention-file-generic
+cd ${BASEDIR}/packages/shinken-mod-pickle-retention-file-generic
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-pickle-retention-file-generic.git
 git fetch --all
 # shinken-mod-simple-log
-cd ${BASEDIR}/packages/shinken-module-simple-log
+cd ${BASEDIR}/packages/shinken-mod-simple-log
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-simple-log.git
 git fetch --all
 # shinken-mod-influxdb
-cd ${BASEDIR}/packages/shinken-module-mod-influxdb
+cd ${BASEDIR}/packages/shinken-mod-influxdb
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-mod-influxdb.git
 git fetch --all
 
