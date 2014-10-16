@@ -2,36 +2,52 @@
 
 BASEDIR=$(dirname $(readlink -f "$0"))/..
 
+# adagios
+cd ${BASEDIR}/packages/adagios
+git remote add upstream https://github.com/opinkerfi/adagios.git
+git fetch --all
+# grafana
+cd ${BASEDIR}/packages/grafana
+git remote add upstream https://github.com/grafana/grafana.git
+git fetch --all
+# influxdb-python
+cd ${BASEDIR}/packages/influxdb-python
+git remote add upstream https://github.com/influxdb/influxdb-python.git
+git fetch --all
 # nagvis
 cd ${BASEDIR}/packages/nagvis
 git remote add upstream git://anonscm.debian.org/pkg-nagios/pkg-nagvis.git
+git fetch --all
+# pynag
+cd ${BASEDIR}/packages/pynag
+git remote add upstream https://github.com/pynag/pynag.git
+git fetch --all
 # shinken
 cd ${BASEDIR}/packages/shinken
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken.git
-# shinken-module-booster-nrpe
+git fetch --all
+# shinken-mod-booster-nrpe
 cd ${BASEDIR}/packages/shinken-module-booster-nrpe
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-booster-nrpe.git
-# shinken-module-graphite
-cd ${BASEDIR}/packages/shinken-module-graphite
-git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-graphite.git
-# shinken-module-livestatus
+git fetch --all
+# shinken-mod-livestatus
 cd ${BASEDIR}/packages/shinken-module-livestatus
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-livestatus.git
-# shinken-module-logstore-sqlite
+git fetch --all
+# shinken-mod-logstore-sqlite
 cd ${BASEDIR}/packages/shinken-module-logstore-sqlite
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-logstore-sqlite.git
-# shinken-module-pickle-retention-file-generic
+git fetch --all
+# shinken-mod-pickle-retention-file-generic
 cd ${BASEDIR}/packages/shinken-module-pickle-retention-file-generic
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-pickle-retention-file-generic.git
-# shinken-module-simple-log
+git fetch --all
+# shinken-mod-simple-log
 cd ${BASEDIR}/packages/shinken-module-simple-log
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-simple-log.git
-# shinken-module-mod-influxdb
+git fetch --all
+# shinken-mod-influxdb
 cd ${BASEDIR}/packages/shinken-module-mod-influxdb
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-mod-influxdb.git
-# pynag
-cd ${BASEDIR}/packages/pynag
-git remote add upstream https://github.com/savoirfairelinux/pynag.git
-# adagios
-cd ${BASEDIR}/packages/adagios
-git remote add upstream https://github.com/savoirfairelinux/adagios.git
+git fetch --all
+
