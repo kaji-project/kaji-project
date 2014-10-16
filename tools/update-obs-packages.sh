@@ -2,10 +2,21 @@
 
 BASEDIR=$(dirname $(readlink -f "$0"))/..
 
+# Colors
+red='\e[0;31m'
+green='\e[0;32m'
+blue='\e[1;34m'
+NC='\e[0m' # No Color
+
 # first arg: name of the obs package
 # second arg: path of the source files
 function obs_push {
+    echo
+    echo "============================================================="
+    echo "             Prepare $1"
+    echo "============================================================="
     # Checkout the package
+    echo -e "${blue}Checkout OBS repo${NC}"
     osc co ${OBS_REPO}/$1
 
     # Check if the OBS orig and the current orig are different
@@ -22,20 +33,30 @@ function obs_push {
         rm ${DIR}/${OBS_REPO}/$1/*
 
         # Copy the new files
+        echo -e "${blue}Copy DEB files${NC}"
         ## .deb
         cp ../build-area/$1_*.tar.gz ${DIR}/${OBS_REPO}/$1/
         cp ../build-area/$1_*.dsc ${DIR}/${OBS_REPO}/$1/
         cp ../build-area/$1_*.changes ${DIR}/${OBS_REPO}/$1/
         ## .rpm
-        cp -f ../packages/$1/*.spec ${DIR}/${OBS_REPO}/$1/
-        cp -f ../packages/$1/debian/patches/* ${DIR}/${OBS_REPO}/$1/
+        echo -e "${blue}Copy RPM files${NC}"
+        cp -f ../packages/$1/*.spec ${DIR}/${OBS_REPO}/$1/ || true
+        cp -f ../packages/$1/debian/patches/* ${DIR}/${OBS_REPO}/$1/ || true
 
         # Add the changes and commit
-        osc addremove ${DIR}/${OBS_REPO}/$1/*
-        osc ci ${DIR}/${OBS_REPO}/$1 -m "Updated ${1}"
+        echo -e "${blue}SENDING to OBS${NC}"
+        osc addremove ${DIR}/${OBS_REPO}/$1/* > /dev/null
+        osc ci ${DIR}/${OBS_REPO}/$1 -m "Updated ${1}" > /dev/null
+        if [[ $? -eq 0 ]]
+        then
+            echo -e "${green}sent to OBS${NC}"
+        else
+            echo -e "${red}ERROR: NOT sent to OBS${NC}"
+        fi
     else
         echo Skipping OBS upload...
     fi
+    exit 0
 }
 
 # Open Build Service repository
