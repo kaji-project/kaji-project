@@ -2,6 +2,8 @@
 
 set -e
 
+package_name=$1
+
 BASEDIR=$(dirname $(readlink -f "$0"))/..
 PACKAGESDIR=$BASEDIR/packages
 BUILD_AREA=$BASEDIR/build-area
@@ -18,8 +20,12 @@ mkdir -p $BUILD_AREA
 
 export QUILT_PATCHES=debian/patches
 
-for package in `ls -1 $BASEDIR/packages`
-do
+
+
+
+function build_package {
+    package=$1
+
     if [[ "$package" == "build-area" ]]
     then
         continue
@@ -50,16 +56,15 @@ do
         echo -e "${red}Build ERROR. Please look here: $PACKAGESDIR/../build-area/build-${package}.report${NC}"
     fi
 
-    # quilt will return 2 if the patches are already applied
-#    quilt push -a || true
-#    cd ..
-#    upstream_version=$(head $package/debian/changelog -n 1 | awk '{print $2}' | sed 's/^(\([0-9]:\)\?\(.*\)-.*)$/\2/')
-#    tar -czf ${package}_${upstream_version}.orig.tar.gz $package --exclude=$package/debian/ --exclude=$package/.git/ --exclude=$package/.pc/
-#    cd $package
-#    quilt pop -a || true
-#    $BUILD_PACKAGE
-#    lintian || true
-#    dh_clean
-
     cd $BASEDIR
-done
+}
+
+if [ "$package_name" != "" ]
+then
+    build_package $package_name
+else
+    for package_name in `ls -1 $BASEDIR/packages`
+    do
+        build_package $package_name
+    done
+fi

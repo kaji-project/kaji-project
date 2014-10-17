@@ -2,51 +2,77 @@
 
 BASEDIR=$(dirname $(readlink -f "$0"))/..
 
+package_name=$1
+
 # Colors
 red='\e[0;31m'
-green='\e[0;32m'
+green='\e[1;32m'
+lightgreen='\e[0;32m'
 blue='\e[1;34m'
+yellow='\e[1;33m'
 NC='\e[0m' # No Color
 
 # first arg: name of the obs package
 # second arg: path of the source files
 function obs_push {
+    package=$1
     echo
     echo "============================================================="
-    echo "             Prepare $1"
+    echo "             Prepare ${package}"
     echo "============================================================="
     # Checkout the package
     echo -e "${blue}Checkout OBS repo${NC}"
-    osc co ${OBS_REPO}/$1
+    cd ${BASEDIR}/obs.tmp
+    osc co ${OBS_REPO}/${package}
 
-    # Check if the OBS orig and the current orig are different
-    rm -rf /tmp/${1}_OBS_ORIG && mkdir /tmp/${1}_OBS_ORIG && tar -xf ${OBS_REPO}/${1}/${1}*.orig.tar.gz -C /tmp/${1}_OBS_ORIG --force-local
-    diff -r ${BASEDIR}/build-area/${1}/ /tmp/${1}_OBS_ORIG/${1}/ --exclude=debian --exclude=.git* --exclude=*.pyc --exclude=build --exclude=.pc --exclude=.*.swp --exclude=*.egg-info
+    upload=0
+    for archive_name in orig debian
+    do
+        # Check if the OBS orig and the current orig are different
+        echo -e "${blue}Decompress OBS ${archive_name} archive${NC}"
+        rm -rf /tmp/${package}_OBS_ORIG && mkdir /tmp/${package}_OBS_ORIG && tar -xf ${OBS_REPO}/${package}/${package}*.${archive_name}.tar.* -C /tmp/${package}_OBS_ORIG --force-local
+        if  [ $? -ne 0 ]
+        then
+            upload=1
+        fi
+        echo -e "${blue}Decompress NEW ${archive_name} archive${NC}"
+        rm -rf /tmp/${package}_NEW_BUILD && mkdir /tmp/${package}_NEW_BUILD && tar -xf ${BASEDIR}/build-area/${package}/${package}*.${archive_name}.tar.* -C /tmp/${package}_NEW_BUILD --force-local
+        if  [ $? -ne 0 ]
+        then
+            upload=1
+        fi
+        echo -e "${blue}Compare ${archive_name} archives${NC}"
+        diff -r /tmp/${package}_NEW_BUILD/ /tmp/${package}_OBS_ORIG/ --exclude=.git* --exclude=*.pyc --exclude=build --exclude=.pc --exclude=.*.swp --exclude=*.egg-info
+        if  [ $? -ne 0 ]
+        then
+            upload=1
+        fi
+    done
 
-    
     # Only update if the source has changed
-    if [ $? -ne 0 ]
+    if [ $upload -ne 0 ]
     then
-        echo Source has changed, uploading to obs...
+        echo -e "${yellow}Source has changed, uploading to obs...${NC}"
 
         # Remove the old files
-        rm ${DIR}/${OBS_REPO}/$1/*
+        rm ${BASEDIR}/obs.tmp/${OBS_REPO}/${package}/*
 
         # Copy the new files
         echo -e "${blue}Copy DEB files${NC}"
         ## .deb
-        cp ../build-area/$1_*.tar.gz ${DIR}/${OBS_REPO}/$1/
-        cp ../build-area/$1_*.dsc ${DIR}/${OBS_REPO}/$1/
-        cp ../build-area/$1_*.changes ${DIR}/${OBS_REPO}/$1/
+        cp ../build-area/${package}/${package}_*.orig* ${BASEDIR}/obs.tmp/${OBS_REPO}/${package}/
+        cp ../build-area/${package}/${package}_*.debian* ${BASEDIR}/obs.tmp/${OBS_REPO}/${package}/
+        cp ../build-area/${package}/${package}_*.dsc ${BASEDIR}/obs.tmp/${OBS_REPO}/${package}/
+        cp ../build-area/${package}/${package}_*.changes ${BASEDIR}/obs.tmp/${OBS_REPO}/${package}/
         ## .rpm
         echo -e "${blue}Copy RPM files${NC}"
-        cp -f ../packages/$1/*.spec ${DIR}/${OBS_REPO}/$1/ || true
-        cp -f ../packages/$1/debian/patches/* ${DIR}/${OBS_REPO}/$1/ || true
+        cp -f ../packages/${package}/*.spec ${BASEDIR}/obs.tmp/${OBS_REPO}/${package}/ || true
+        cp -f ../packages/${package}/debian/patches/* ${BASEDIR}/obs.tmp/${OBS_REPO}/${package}/ || true
 
         # Add the changes and commit
         echo -e "${blue}SENDING to OBS${NC}"
-        osc addremove ${DIR}/${OBS_REPO}/$1/* > /dev/null
-        osc ci ${DIR}/${OBS_REPO}/$1 -m "Updated ${1}" > /dev/null
+        osc addremove ${BASEDIR}/obs.tmp/${OBS_REPO}/${package}/* > /dev/null
+        osc ci ${BASEDIR}/obs.tmp/${OBS_REPO}/${package} -m "Updated ${package}" > /dev/null
         if [[ $? -eq 0 ]]
         then
             echo -e "${green}sent to OBS${NC}"
@@ -54,24 +80,25 @@ function obs_push {
             echo -e "${red}ERROR: NOT sent to OBS${NC}"
         fi
     else
-        echo Skipping OBS upload...
+        echo -e "${lightgreen}Sources inchanged. Skipping OBS upload...${NC}"
     fi
-    exit 0
 }
 
 # Open Build Service repository
 OBS_REPO=home:kaji-project
 
-mkdir obs.tmp && cd obs.tmp
+mkdir -p ${BASEDIR}/obs.tmp && cd ${BASEDIR}/obs.tmp
 
-DIR=$(pwd)
+if [ "$package_name" != "" ]
+then
+    obs_push $package_name "../packages/"
+else
+    # plugins
+    for package_name in `(cd ../packages && ls -d */ | tr -d '/')`
+    do
+        echo "OBS: processing ${package_name}"
+        obs_push $package_name "../packages/"
+    done
+fi
 
-# plugins
-for package in `(cd ../packages && ls -d */ | tr -d '/')`
-do
-    echo "OBS: processing ${package}"
-    obs_push $package "../packages/"
-done
-
-cd ..
-rm -r obs.tmp
+rm -r ${BASEDIR}/obs.tmp
