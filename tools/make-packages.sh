@@ -18,7 +18,7 @@ cd $BASEDIR
 
 mkdir -p $BUILD_AREA
 
-export QUILT_PATCHES=debian/patches
+#export QUILT_PATCHES=debian/patches
 
 
 
@@ -41,12 +41,6 @@ function build_package {
     then
         echo "${red}No kaji branch found${NC}"
         continue
-    fi
-    if [[ -L "debian" ]]
-    then
-        # debian is a symlink to debian.upstream (for pynag and adagios)
-        rm -f debian 
-        mv debian.upstream debian
     fi
     # Maybe we can do only this
     git-buildpackage -tc -us -uc --git-debian-branch=kaji --git-export-dir=../../build-area/${package} > $PACKAGESDIR/../build-area/build-${package}.report 2>&1

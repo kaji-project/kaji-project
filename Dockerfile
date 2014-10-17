@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
 
-RUN apt-get install -y wget vim
+RUN apt-get install -y wget vim aptitude
 
 ### OBS REPO
 
@@ -24,6 +24,10 @@ RUN apt-get update
 ### Installation
 
 
-#RUN apt-get install -y  apache2 git-core libapache2-mod-wsgi nagios-plugins nagios-plugins-basic nagios-plugins-standard nagios-plugins-extra shinken-common shinken-module-mod-influxdb shinken-module-livestatus shinken-module-logstore-sqlite shinken-module-pickle-retention-file-generic shinken-module-simple-log shinken-module-booster-nrpe adagios pynag nagvis apache2-utils htop
+#RUN apt-get install -y  apache2 git-core libapache2-mod-wsgi nagios-plugins nagios-plugins-basic nagios-plugins-standard nagios-plugins-extra shinken-common shinken-mod-influxdb shinken-mod-livestatus shinken-mod-logstore-sqlite shinken-mod-pickle-retention-file-generic shinken-mod-simple-log shinken-mod-booster-nrpe adagios pynag nagvis apache2-utils htop
 
-#RUN apt-get install -y kaji
+#RUN echo "#!/bin/sh\nexit 101" > /usr/sbin/policy-rc.d
+#RUN chmod +x /usr/sbin/policy-rc.d
+#RUN ln -sf /bin/true /sbin/initctl
+
+RUN apt-get install -y kaji

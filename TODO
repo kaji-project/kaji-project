@@ -1,0 +1,26 @@
+=====
+TO DO
+=====
+
+Grafana
+=======
+
+* Compile CSS
+
+Nagvis
+=====
+
+* Add kaji user as admin in sqlite
+
+Adagios
+=======
+
+* Show logs
+* Hide debug tag
+* Change TOP menu title
+* Change window title
+* Change left menu and hide experimental
+* Use last adagios upstream release
+* ...
+
+
