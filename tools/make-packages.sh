@@ -39,7 +39,8 @@ function build_package {
     git checkout kaji || true
     if [[ $? -ne 0 ]]
     then
-        echo "DDD"
+        echo "${red}No kaji branch found${NC}"
+        continue
     fi
     if [[ -L "debian" ]]
     then
@@ -48,7 +49,7 @@ function build_package {
         mv debian.upstream debian
     fi
     # Maybe we can do only this
-    git-buildpackage -tc -us -uc --git-debian-branch=kaji --git-export-dir=../../build-area/${package} > $PACKAGESDIR/../build-area/build-${package}.report 2>&1 || true
+    git-buildpackage -tc -us -uc --git-debian-branch=kaji --git-export-dir=../../build-area/${package} > $PACKAGESDIR/../build-area/build-${package}.report 2>&1
     if [[ $? -eq 0 ]]
     then
         echo -e "${green}Build OK${NC}"
