@@ -42,7 +42,7 @@ function build_package {
         echo "${red}No kaji branch found${NC}"
         continue
     fi
-    # Maybe we can do only this
+    rm -rf ../../build-area/${package}
     git-buildpackage -tc -us -uc --git-debian-branch=kaji --git-export-dir=../../build-area/${package} > $PACKAGESDIR/../build-area/build-${package}.report 2>&1
     if [[ $? -eq 0 ]]
     then
