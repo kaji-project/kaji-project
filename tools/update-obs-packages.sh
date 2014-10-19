@@ -41,6 +41,11 @@ function obs_push {
         then
             upload=1
         fi
+        if [ "${package}" == "shinken" ]
+        then
+            rm -f /tmp/${package}_NEW_BUILD/shinken*/test/modules
+            rm -f /tmp/${package}_OBS_ORIG/shinken*/test/modules
+        fi
         echo -e "${blue}Compare ${archive_name} archives${NC}"
         diff -r /tmp/${package}_NEW_BUILD/ /tmp/${package}_OBS_ORIG/ --exclude=.git* --exclude=*.pyc --exclude=build --exclude=.pc --exclude=.*.swp --exclude=*.egg-info
         if  [ $? -ne 0 ]

@@ -2,26 +2,80 @@
 TO DO
 =====
 
+Packaging
+=========
+
 Grafana
-=======
++++++++
 
 * Compile CSS => unresolvable dependencies on xUbuntu_12.04 xUbuntu_14.04, missing node-less which is in universe
   -> Add node-less in Kaji dependencies and launch css compiling in Kaji postinst
+  OR
+  -> Use compiled tar in packaging ...
+
+influxdb-python
++++++++++++++++
+
+* Debian_7.0, xUbuntu_12.04, missing dependencies => Add pip install influxdb in Kaji postinst
+
+
+Integration
+===========
 
 Nagvis
-==-===
+++++++
 
 * Add kaji user as admin in sqlite
 
+Kaji
+++++
+
+Which tools we could/should put in suggests/recommends/deps
+
+Recommends
+~~~~~~~~~~
+
+* vim
+
+Suggests
+~~~~~~~~
+
+* sqlite3
+* nmap
+* tcpdump
+
 Adagios
-=======
++++++++
 
 * Show logs
 * Hide debug tag
 * hide experimental
-* ...
+* In apache conf prepare Active directory config (one for / and one for /objectbrowser)
 
-influxdb-python
-===============
 
-* Debian_7.0, xUbuntu_12.04, missing dependencies => Add pip install influxdb in Kaji postinst
+To fix in Adagios
+~~~~~~~~~~~~~~~~~
+
+Configs have changed. You need to reload for changes to take effect.
+--------------------------------------------------------------------
+
+* Load Shinken status_dat in broker
+* Add in shinken.cfg: object_cache_file=/var/lib/shinken/objects.cache
+* Add in shinken.cfg: status_file=/var/lib/shinken/status.dat
+
+
+Use LiveStatus or InfluxDB to get logs
+--------------------------------------
+
+In Pynag: ./Parsers/__init__.py
+- Check "class LogFiles"
+- And method "get_log_entries"
+
+And Check
+- state_history
+- Log
+- Comments
+- Downtimes
+- Acknowledgements
+- host/history
+- service/history
