@@ -13,12 +13,6 @@ Grafana
   OR
   -> Use compiled tar in packaging ...
 
-influxdb-python
-+++++++++++++++
-
-* Debian_7.0, xUbuntu_12.04, missing dependencies => Add pip install influxdb in Kaji postinst
-
-
 Integration
 ===========
 
@@ -26,23 +20,6 @@ Nagvis
 ++++++
 
 * Add kaji user as admin in sqlite
-
-Kaji
-++++
-
-Which tools we could/should put in suggests/recommends/deps
-
-Recommends
-~~~~~~~~~~
-
-* vim
-
-Suggests
-~~~~~~~~
-
-* sqlite3
-* nmap
-* tcpdump
 
 Adagios
 +++++++
@@ -79,3 +56,23 @@ And Check
 - Acknowledgements
 - host/history
 - service/history
+
+
+Kaji
+++++
+
+Which tools we could/should put in suggests/recommends/deps
+
+Recommends
+~~~~~~~~~~
+
+* vim
+
+Suggests
+~~~~~~~~
+
+* sqlite3
+* nmap
+* tcpdump
+
+
