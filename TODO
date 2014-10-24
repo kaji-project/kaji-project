@@ -8,15 +8,7 @@ Packaging
 Grafana
 +++++++
 
-* Compile CSS => unresolvable dependencies on xUbuntu_12.04 xUbuntu_14.04, missing node-less which is in universe
-  -> Add node-less in Kaji dependencies and launch css compiling in Kaji postinst
-  OR
-  -> Use compiled tar in packaging ...
-
-influxdb-python
-+++++++++++++++
-
-* Debian_7.0, xUbuntu_12.04, missing dependencies => Add pip install influxdb in Kaji postinst
+* Doc: How to handle upstream update
 
 
 Integration
