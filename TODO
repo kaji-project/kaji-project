@@ -18,23 +18,6 @@ Nagvis
 
 * Add kaji user as admin in sqlite
 
-Kaji
-++++
-
-Which tools we could/should put in suggests/recommends/deps
-
-Recommends
-~~~~~~~~~~
-
-* vim
-
-Suggests
-~~~~~~~~
-
-* sqlite3
-* nmap
-* tcpdump
-
 Adagios
 +++++++
 
@@ -73,3 +56,23 @@ And Check
 - Acknowledgements
 - host/history
 - service/history
+
+
+Kaji
+++++
+
+Which tools we could/should put in suggests/recommends/deps
+
+Recommends
+~~~~~~~~~~
+
+* vim
+
+Suggests
+~~~~~~~~
+
+* sqlite3
+* nmap
+* tcpdump
+
+
