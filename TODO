@@ -8,8 +8,7 @@ Packaging
 Grafana
 +++++++
 
-* Doc: How to handle upstream update
-
+* Doc: How to handle upstream update (for packaging
 
 Integration
 ===========
@@ -54,6 +53,9 @@ Configs have changed. You need to reload for changes to take effect.
 * Load Shinken status_dat in broker
 * Add in shinken.cfg: object_cache_file=/var/lib/shinken/objects.cache
 * Add in shinken.cfg: status_file=/var/lib/shinken/status.dat
+OR
+To check the current loaded configuration in Shinken
+curl "http://localhost:7770/get_objects_properties?table=hosts"  2> /dev/null | json_pp
 
 
 Use LiveStatus or InfluxDB to get logs

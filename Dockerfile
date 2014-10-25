@@ -8,7 +8,12 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
 
-RUN apt-get install -y wget vim aptitude
+RUN apt-get install -y wget vim aptitude curl
+
+### InfluxDB
+
+RUN wget http://s3.amazonaws.com/influxdb/influxdb_latest_amd64.deb
+RUN dpkg -i influxdb_latest_amd64.deb
 
 ### OBS REPO
 
@@ -19,7 +24,6 @@ RUN wget http://download.opensuse.org/repositories/home:kaji-project/xUbuntu_14.
 RUN apt-key add - < Release.key
 
 RUN apt-get update
-
 
 ### Installation
 
