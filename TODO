@@ -25,6 +25,18 @@ Adagios
 To fix in Adagios
 ~~~~~~~~~~~~~~~~~
 
+BUG adagios git
+---------------
+
+We have to add in install scripts
+sudo chown -R www-data /etc/shinken/.git/
+
+
+BUG TOP alert producer
+----------------------
+
+update_top_alert_producers() failed
+
 Configs have changed. You need to reload for changes to take effect.
 --------------------------------------------------------------------
 
