@@ -25,11 +25,10 @@ Adagios
 To fix in Adagios
 ~~~~~~~~~~~~~~~~~
 
-BUG adagios git
----------------
+BUG external commands don't work
+--------------------------------
 
-We have to add in install scripts
-sudo chown -R www-data /etc/shinken/.git/
+We need to fix it
 
 
 BUG TOP alert producer
@@ -44,8 +43,10 @@ Configs have changed. You need to reload for changes to take effect.
 * Add in shinken.cfg: object_cache_file=/var/lib/shinken/objects.cache
 * Add in shinken.cfg: status_file=/var/lib/shinken/status.dat
 OR
-To check the current loaded configuration in Shinken
-curl "http://localhost:7770/get_objects_properties?table=hosts"  2> /dev/null | json_pp
+Adagios check the timestamps of few files
+see here : Parsers/__init__.py:    def needs_reload(self):
+
+
 
 
 Use LiveStatus or InfluxDB to get logs
