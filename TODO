@@ -17,8 +17,8 @@ Adagios
 +++++++
 
 * Show logs
-* Hide debug tag
-* hide experimental
+* Hide debug tab in host/service view
+* Hide experimental
 * In apache conf prepare Active directory config (one for / and one for /objectbrowser)
 
 
@@ -31,11 +31,6 @@ BUG external commands don't work
 We need to fix it
 
 
-BUG TOP alert producer
-----------------------
-
-update_top_alert_producers() failed
-
 Configs have changed. You need to reload for changes to take effect.
 --------------------------------------------------------------------
 
@@ -47,6 +42,10 @@ Adagios check the timestamps of few files
 see here : Parsers/__init__.py:    def needs_reload(self):
 
 
+BUG TOP alert producer
+----------------------
+
+update_top_alert_producers() failed
 
 
 Use LiveStatus or InfluxDB to get logs

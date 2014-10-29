@@ -12,11 +12,14 @@ obs:
 	rm -rf obs.tmp
 	tools/update-obs-packages.sh
 
-build_docker:
+docker_build:
 	sudo docker build -t kaji .
 
-rebuild_docker:
+docker_rebuild:
 	sudo docker build --no-cache=true -t kaji .
 
-interact_docker:
+docker_interact:
 	sudo docker run -i -t kaji bash
+
+docker_run:
+	sudo docker run -i -t kaji
