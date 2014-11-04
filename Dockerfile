@@ -8,7 +8,21 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
 
-RUN apt-get install -y wget vim aptitude openssh-server
+RUN apt-get install -y wget vim aptitude openssh-server sudo
+
+### Create kaji user
+
+RUN mkdir -p /home/kaji
+
+RUN useradd -d /home/kaji -s /bin/bash kaji
+
+RUN groupadd admin
+
+RUN usermod -G admin kaji
+
+RUN chown -R kaji:kaji /home/kaji
+
+RUN echo kaji:kaji | chpasswd
 
 ### InfluxDB
 
