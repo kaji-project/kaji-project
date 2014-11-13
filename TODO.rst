@@ -25,12 +25,6 @@ Adagios
 To fix in Adagios
 ~~~~~~~~~~~~~~~~~
 
-BUG external commands don't work
---------------------------------
-
-We need to fix it
-
-
 Configs have changed. You need to reload for changes to take effect.
 --------------------------------------------------------------------
 
