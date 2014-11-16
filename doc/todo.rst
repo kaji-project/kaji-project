@@ -1,6 +1,6 @@
-=====
-TO DO
-=====
+====
+TODO
+====
 
 Packaging
 =========
@@ -8,7 +8,7 @@ Packaging
 Grafana
 +++++++
 
-* Doc: How to handle upstream update (for packaging
+* Doc: How to handle upstream update (for packaging)
 
 Integration
 ===========
@@ -28,28 +28,27 @@ To fix in Adagios
 Configs have changed. You need to reload for changes to take effect.
 --------------------------------------------------------------------
 
-* Load Shinken status_dat in broker
-* Add in shinken.cfg: object_cache_file=/var/lib/shinken/objects.cache
-* Add in shinken.cfg: status_file=/var/lib/shinken/status.dat
-OR
-Adagios check the timestamps of few files
-see here : Parsers/__init__.py:    def needs_reload(self):
+* Adagios check the timestamps of /var/lib/shinken/objects.cache
+* see here : Parsers/__init__.py:    def needs_reload(self):
 
 
 BUG TOP alert producer
 ----------------------
 
-update_top_alert_producers() failed
+* update_top_alert_producers() failed
+* It seems the same bug as logs bug (see below)
 
 
 Use LiveStatus or InfluxDB to get logs
 --------------------------------------
 
 In Pynag: ./Parsers/__init__.py
+
 - Check "class LogFiles"
 - And method "get_log_entries"
 
 And Check
+
 - state_history
 - Log
 - Comments
@@ -57,6 +56,7 @@ And Check
 - Acknowledgements
 - host/history
 - service/history
+- update_top_alert_producers
 
 
 Kaji
