@@ -32,11 +32,11 @@ Workflows
 Get dev environment
 ~~~~~~~~~~~~~~~~~~~
 
-To get dev environment, you need to clone the meta repository and all submodules:
+To get dev environment, you need to clone the keji-project repository and all submodules:
 
 ::
 
-    $ git clone git@github.com:kaji-project/meta.git --recursive
+    $ git clone git@github.com:kaji-project/kaji-project.git --recursive
     $ cd meta
     $ ./tools/add_upstream_branches.sh
     $ make dev_env
