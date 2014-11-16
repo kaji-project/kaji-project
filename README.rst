@@ -21,15 +21,15 @@ last Debian version of the package, and by rebasing kaji on master
 from time to time, it's easy to upgrade our Kaji packages.
 
 Here's a well set-up configuration for the package
-shinken-module-livestatus:
+shinken-mod-livestatus:
 
 ::
 
     $ git remote -v
-    origin    git@github.com:kaji-project/shinken-module-livestatus.git (fetch)
-    origin    git@github.com:kaji-project/shinken-module-livestatus.git (push)
-    upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-livestatus.git (fetch)
-    upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-livestatus.git (push)
+    origin    git@github.com:kaji-project/shinken-mod-livestatus.git (fetch)
+    origin    git@github.com:kaji-project/shinken-mod-livestatus.git (push)
+    upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-mod-livestatus.git (fetch)
+    upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-mod-livestatus.git (push)
 
 
 Workflows
@@ -56,7 +56,7 @@ Create repo MY-PACKAGE on GitHub and on openSUSE Build Service
 ::
 
     $ git submodule add git@github.com:kaji-project/shinken-mod-influxdb.git packages/shinken-mod-influxdb
-    $ cd packages/shinken-module-mod-influxdb
+    $ cd packages/shinken-mod-influxdb
     $ git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-mod-influxdb.git
     $ git fetch --all
     $ git reset --hard  upstream/master
@@ -86,18 +86,18 @@ Then commit the submodule on the meta repository
 ::
 
     $ cd ../..
-    $ git submodule add git@github.com:kaji-project/shinken-module-mod-influxdb.git packages/shinken-module-mod-influxdb
-    $ git add packages/shinken-module-mod-influxdb
-    $ git commit -m "Add shinken-module-mod-influxdb repo"
+    $ git submodule add git@github.com:kaji-project/shinken-mod-influxdb.git packages/shinken-mod-influxdb
+    $ git add packages/shinken-mod-influxdb
+    $ git commit -m "Add shinken-mod-influxdb repo"
     $ git push origin master
 
 Add the upstream repository in file ``tools/add_upstream_branches.sh`` like this:
 
 ::
 
-    # shinken-module-mod-influxdb
-    cd ${BASEDIR}/packages/shinken-module-mod-influxdb
-    git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-mod-influxdb.git
+    # shinken-mod-influxdb
+    cd ${BASEDIR}/packages/shinken-mod-influxdb
+    git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-mod-influxdb.git
 
  
 
