@@ -37,3 +37,6 @@
 [submodule "packages/grafana"]
 	path = packages/grafana
 	url = git@github.com:kaji-project/grafana.git
+[submodule "packages/rekishi"]
+	path = packages/rekishi
+	url = git@github.com:kaji-project/rekishi.git

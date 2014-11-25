@@ -50,4 +50,7 @@ git fetch --all
 cd ${BASEDIR}/packages/shinken-mod-influxdb
 git remote add upstream https://alioth.debian.org/anonscm/git/pkg-shinken/shinken-module-mod-influxdb.git
 git fetch --all
-
+# rekishi
+cd ${BASEDIR}/packages/rekishi
+git remote add upstream https://github.com/savoirfairelinux/rekishi.git
+git fetch --all
