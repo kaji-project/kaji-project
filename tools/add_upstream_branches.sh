@@ -12,7 +12,7 @@ git remote add upstream https://github.com/grafana/grafana.git
 git fetch --all
 # influxdb-python
 cd ${BASEDIR}/packages/influxdb-python
-git remote add upstream https://github.com/influxdb/influxdb-python.git
+git remote add upstream http://anonscm.debian.org/cgit/collab-maint/influxdb-python.git
 git fetch --all
 # nagvis
 cd ${BASEDIR}/packages/nagvis
