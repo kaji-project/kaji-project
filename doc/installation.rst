@@ -11,7 +11,7 @@ You can add the repository key to apt. Keep in mind that the owner of the key ma
 
 ::
 
-  sudo sh  -c 'gpg --recv-keys  --keyserver pgp.mit.edu  2320E8F8 && gpg --export --armor 2320E8F8 | apt-key add -'
+  sudo sh  -c 'gpg --recv-keys --keyserver pgp.mit.edu 2320E8F8 && gpg --export --armor 2320E8F8 | apt-key add -'
 
 
 For xUbuntu 14.04 run the following:
@@ -30,7 +30,7 @@ You can add the repository key to apt. Keep in mind that the owner of the key ma
 
 ::
 
-  gpg --recv-keys  --keyserver pgp.mit.edu  2320E8F8 && gpg --export --armor 2320E8F8 | apt-key add -
+  gpg --recv-keys --keyserver pgp.mit.edu 2320E8F8 && gpg --export --armor 2320E8F8 | apt-key add -
 
 
 
