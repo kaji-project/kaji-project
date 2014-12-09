@@ -71,7 +71,7 @@ for file in $(find $DEBFOLDER -name '*.deb'); do
     fi
 done
 
-dpkg-sig  -k ${KEYID} --sign builder $TOSIGN
+dpkg-sig -p  -k ${KEYID} --sign builder $TOSIGN
 
 for file in $(find $DEBFOLDER -name '*.deb'); do
     reprepro -Vb ${DISTRO_FOLDER} includedeb ${CODENAME} $file
