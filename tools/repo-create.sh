@@ -47,7 +47,7 @@ then
 fi
 
 mkdir -p ${DISTRO_FOLDER}/conf
-cat << EOF >> ${DISTRO_FOLDER}conf/distributions
+cat << EOF >> ${DISTRO_FOLDER}/conf/distributions
 Origin: kaji
 Label: Kaji ${DISTRO} Repository
 Codename: ${CODENAME}
