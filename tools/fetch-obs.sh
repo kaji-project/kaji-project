@@ -1,7 +1,7 @@
 #!/bin/bash
 
-$BASEDIR=$1
-$DISTRO=$2
+BASEDIR=$1
+DISTRO=$2
 
 mkdir -p $BASEDIR
 
