@@ -55,7 +55,9 @@ Architectures: amd64 i386 source
 Components: main
 Description: This repository contains Kaji ${DISTRO} packages
 SignWith: ${KEYID}
+
 EOF
 cat << EOF > ${DISTRO_FOLDER}/conf/options
 basedir ${DISTRO_FOLDER}
+
 EOF
