@@ -64,7 +64,7 @@ fi
 
 
 TOSIGN=""
-for file in $($DEBFOLDER -name '*.deb'); do
+for file in $(find $DEBFOLDER -name '*.deb'); do
     signed=`dpkg-sig -l $file |grep "^builder$"|wc -l`
     if [ $signed -eq 0 ]; then
          TOSIGN="$TOSIGN $file"
@@ -73,7 +73,7 @@ done
 
 dpkg-sig  -k ${KEYID} --sign builder $TOSIGN
 
-for file in $($DEBFOLDER -name '*.deb'); do
+for file in $(find $DEBFOLDER -name '*.deb'); do
     reprepro -Vb ${DISTRO_FOLDER} includedeb ${CODENAME} $file
 done
 
