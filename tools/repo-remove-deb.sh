@@ -43,7 +43,7 @@ then
     exit 1
 fi
 
-reprepro -Vb ${DISTRO_FOLDER}/kaji/ remove ${CODENAME} ${PACKAGE}
+reprepro -Vb ${DISTRO_FOLDER} remove ${CODENAME} ${PACKAGE}
 
 
 exit 0

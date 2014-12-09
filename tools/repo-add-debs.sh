@@ -7,9 +7,9 @@ REPO_FOLDER="$1"
 DISTRO="$2"
 CODENAME="$3"
 KEYID="$4"
-DEBFILE="$5"
+DEBFOLDER="$5"
 
-# bash repo-add-deb.sh /tmp/repo/kaji-repo debian amakuni FAB456AA ../build-area/adagios/adagios_1.6.1-1kaji0.2_all.deb
+# bash repo-add-deb.sh /tmp/repo/kaji-repo debian amakuni FAB456AA /tmp/Debian_7.0
 
 DISTRO_FOLDER="${REPO_FOLDER}/${DISTRO}"
 
@@ -50,29 +50,31 @@ then
     echo "missing GPG key id"
     exit 1
 fi
-if [ "$DEBFILE" = "" ]
+if [ "$DEBFOLDER" = "" ]
 then
     echo "missing deb file"
     exit 1
 fi
 
-# Check deb file
-if [ ! -e "$DEBFILE" ]
+if [ ! -d "$DEBFOLDER" ]
 then
-    echo "Deb file ${DEBFILE} not found"
+    echo "Deb folder ${DEBFOLDER} not found"
     exit 3
 fi
 
 
-# Check if deb file is already signed
-signed=`dpkg-sig -l ${DEBFILE} |grep "^builder$"|wc -l`
-if [ $signed -eq 0 ]
-then
-    echo "Signing package..."
-    dpkg-sig  -k ${KEYID} --sign builder ${DEBFILE}
-fi
+TOSIGN=""
+for file in $($DEBFOLDER -name '*.deb'); do
+    signed=`dpkg-sig -l $file |grep "^builder$"|wc -l`
+    if [ $signed -eq 0 ]; then
+         TOSIGN="$TOSIGN $file"
+    fi
+done
 
-# Sign changes file ???
-reprepro -Vb ${DISTRO_FOLDER} includedeb ${CODENAME} ${DEBFILE}
+dpkg-sig  -k ${KEYID} --sign builder $TOSIGN
+
+for file in $($DEBFOLDER -name '*.deb'); do
+    reprepro -Vb ${DISTRO_FOLDER} includedeb ${CODENAME} $file
+done
 
 exit 0

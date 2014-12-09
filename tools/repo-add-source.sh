@@ -51,6 +51,6 @@ then
 fi
 
 # Sign changes file ???
-reprepro -S main -P standard -b ${DISTRO_FOLDER}/kaji/ includedsc ${CODENAME} ${DSCFILE}
+reprepro -S main -P standard -b ${DISTRO_FOLDER} includedsc ${CODENAME} ${DSCFILE}
 
 exit 0

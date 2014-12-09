@@ -46,8 +46,8 @@ then
     exit 1
 fi
 
-mkdir -p ${DISTRO_FOLDER}/kaji/conf
-cat << EOF >> ${DISTRO_FOLDER}/kaji/conf/distributions
+mkdir -p ${DISTRO_FOLDER}/conf
+cat << EOF >> ${DISTRO_FOLDER}conf/distributions
 Origin: kaji
 Label: Kaji ${DISTRO} Repository
 Codename: ${CODENAME}
@@ -56,6 +56,6 @@ Components: main
 Description: This repository contains Kaji ${DISTRO} packages
 SignWith: ${KEYID}
 EOF
-cat << EOF > ${DISTRO_FOLDER}/kaji/conf/options
-basedir ${DISTRO_FOLDER}/kaji
+cat << EOF > ${DISTRO_FOLDER}/conf/options
+basedir ${DISTRO_FOLDER}
 EOF
