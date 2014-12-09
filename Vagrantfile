@@ -132,4 +132,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :inline => "debconf-set-selections <<< 'postfix postfix/mailname string your.hostname.com'"
   config.vm.provision :shell, :inline => "debconf-set-selections <<< 'postfix postfix/main_mailer_type string \'Internet Site\''"
   config.vm.provision :shell, :inline => "sudo apt-get install -y kaji"
+  config.vm.provision :shell, :inline => "sudo bash /usr/sbin/kaji-finish-install"
 end
