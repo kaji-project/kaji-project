@@ -26,23 +26,23 @@ fi
 # Check args
 if [ "$REPO_FOLDER" = "" ]
 then
-    echo "missing repo folder"
+    echo "Missing repo folder"
     exit 1
 fi
 # Should be debian/ubuntu
 if [ "$DISTRO" = "" ]
 then
-    echo "missing distro"
+    echo "Missing distro"
     exit 1
 fi
 if [ "$CODENAME" = "" ]
 then
-    echo "missing codename"
+    echo "Missing codename"
     exit 1
 fi
 if [ "$KEYID" = "" ]
 then
-    echo "missing key id"
+    echo "Missing gpg key id"
     exit 1
 fi
 
