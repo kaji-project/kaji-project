@@ -1,12 +1,13 @@
 #!/bin/bash
 
 BASEDIR=$1
-DISTRO=$2
+URL=$2
+DISTRO=$3
 
 mkdir -p $BASEDIR
 
 # Will download into $BASEDIR/$DISTRO
-wget -r  --no-parent -P $BASEDIR -nH  --cut-dirs=3 http://download.opensuse.org/repositories/home:/kaji-project/$DISTRO
+wget -r  --no-parent -P $BASEDIR -nH  --cut-dirs=3 http://download.opensuse.org/repositories/home:/$URL/$DISTRO
 
 find $BASEDIR/$DISTRO -name '*.html*' -exec rm {} \;
 find $BASEDIR/$DISTRO -name '*.btih' -exec rm {} \;
