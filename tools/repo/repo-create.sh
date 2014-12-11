@@ -51,7 +51,7 @@ cat << EOF >> ${DISTRO_FOLDER}/conf/distributions
 Origin: kaji
 Label: Kaji ${DISTRO} Repository
 Codename: ${CODENAME}
-Architectures: amd64 i386 source
+Architectures: amd64 i686 source
 Components: main
 Description: This repository contains Kaji ${DISTRO} packages
 SignWith: ${KEYID}
