@@ -98,21 +98,21 @@ repo_create-plugins:
 
 repo_add-debs-kaji:
 	tools/repo/repo-add-debs.sh $(REPOPATH) debian7 $(CODENAME) $(PUBID) /tmp/kaji-project/Debian_7.0/
-	tools/repo/repo-add-debs.sh $(REPOPATH) ubuntu14.04 $(CODENAME) $(PUBID) /tmp/kaji-project/xUbuntu14.04/
+	tools/repo/repo-add-debs.sh $(REPOPATH) ubuntu14.04 $(CODENAME) $(PUBID) /tmp/kaji-project/xUbuntu_14.04/
 
 repo_add-debs-plugins:
 	tools/repo/repo-add-debs.sh $(REPOPATH) debian7 plugins $(PUBID) /tmp/sfl-monitoring:/monitoring-tools/Debian_7.0/
-	tools/repo/repo-add-debs.sh $(REPOPATH) ubuntu12.04 plugins $(PUBID) /tmp/sfl-monitoring:/monitoring-tools/xUbuntu12.04/
-	tools/repo/repo-add-debs.sh $(REPOPATH) ubuntu14.04 plugins $(PUBID) /tmp/sfl-monitoring:/monitoring-tools/xUbuntu14.04/
+	tools/repo/repo-add-debs.sh $(REPOPATH) ubuntu12.04 plugins $(PUBID) /tmp/sfl-monitoring:/monitoring-tools/xUbuntu_12.04/
+	tools/repo/repo-add-debs.sh $(REPOPATH) ubuntu14.04 plugins $(PUBID) /tmp/sfl-monitoring:/monitoring-tools/xUbuntu_14.04/
 
 repo_fetch-kaji:
 	tools/repo/fetch-obs.sh /tmp kaji-project Debian_7.0
-	tools/repo/fetch-obs.sh /tmp kaji-project xUbuntu14.04
+	tools/repo/fetch-obs.sh /tmp kaji-project xUbuntu_14.04
 
 repo_fetch-plugins:
 	tools/repo/fetch-obs.sh /tmp "sfl-monitoring:/monitoring-tools" Debian_7.0
-	tools/repo/fetch-obs.sh /tmp "sfl-monitoring:/monitoring-tools" xUbuntu14.04
-	tools/repo/fetch-obs.sh /tmp "sfl-monitoring:/monitoring-tools" xUbuntu12.04
+	tools/repo/fetch-obs.sh /tmp "sfl-monitoring:/monitoring-tools" xUbuntu_14.04
+	tools/repo/fetch-obs.sh /tmp "sfl-monitoring:/monitoring-tools" xUbuntu_12.04
 
 repo_fetch-influxdb:
 	tools/repo/fetch-influxdb.sh /tmp
