@@ -122,3 +122,7 @@ repo_add-influxdb:
 	tools/repo/repo-add-deb.sh $(REPOPATH) ubuntu14.04 $(CODENAME) $(PUBID) /tmp/influxdb_0.8.7_amd64.deb
 	tools/repo/repo-add-deb.sh $(REPOPATH) debian7 $(CODENAME) $(PUBID) /tmp/influxdb_0.8.7_i686.deb
 	tools/repo/repo-add-deb.sh $(REPOPATH) ubuntu14.04 $(CODENAME) $(PUBID) /tmp/influxdb_0.8.7_i686.deb
+
+repo_rebuild_index:
+	tools/repo/repo-rebuild-index.sh $(REPOPATH) debian7 $(CODENAME)
+	tools/repo/repo-rebuild-index.sh $(REPOPATH) ubuntu14.04 $(CODENAME)
