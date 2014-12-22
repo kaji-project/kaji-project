@@ -126,3 +126,7 @@ repo_add-influxdb:
 repo_rebuild_index:
 	tools/repo/repo-rebuild-index.sh $(REPOPATH) debian7 $(CODENAME)
 	tools/repo/repo-rebuild-index.sh $(REPOPATH) ubuntu14.04 $(CODENAME)
+	tools/repo/repo-rebuild-index.sh $(REPOPATH) debian7 plugins
+	tools/repo/repo-rebuild-index.sh $(REPOPATH) ubuntu14.04 plugins
+	tools/repo/repo-rebuild-index.sh $(REPOPATH) ubuntu12.04 plugins
+
