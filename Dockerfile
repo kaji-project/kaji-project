@@ -24,25 +24,20 @@ RUN chown -R kaji:kaji /home/kaji
 
 RUN echo kaji:kaji | chpasswd
 
-### InfluxDB
-
-RUN wget http://s3.amazonaws.com/influxdb/influxdb_latest_amd64.deb
-
-RUN dpkg -i influxdb_latest_amd64.deb
-
-### OBS REPO
-
+###### DEV REPOSITORY
+## InfluxDB
+#RUN wget http://s3.amazonaws.com/influxdb/influxdb_latest_amd64.deb
+#RUN dpkg -i influxdb_latest_amd64.deb
+## OBS REPO
 #RUN sh -c "echo 'deb http://download.opensuse.org/repositories/home:/kaji-project/xUbuntu_14.04/ /' >> /etc/apt/sources.list.d/kaji.list"
 #RUN wget http://download.opensuse.org/repositories/home:kaji-project/xUbuntu_14.04/Release.key
 #RUN apt-key add - < Release.key
 
-### Kaji stable repo
-
+###### STABLE REPOSITORY
 RUN gpg --recv-keys  --keyserver pgp.mit.edu 2320E8F8 && gpg --export --armor 2320E8F8 | apt-key add -
-
 RUN echo 'deb http://deb.kaji-project.org/ubuntu14.04/ amakuni main' >> /etc/apt/sources.list.d/kaji.list
-
 RUN apt-get update
+
 
 ### Installation
 
