@@ -34,6 +34,14 @@ then
     exit 1
 fi
 
+# Should be rhel/centos
+if [ "$SIG_NAME" = "" ]
+then
+    echo "Missing signature name"
+    exit 1
+fi
+
+
 if [ ! -d "${DISTRO_FOLDER}"  ]
 then
     echo "${DISTRO_FOLDER} not a directory, I won't create an empty repo"
