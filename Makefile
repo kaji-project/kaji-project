@@ -88,13 +88,14 @@ doc_publish: doc_clean doc_html
 	@echo "The update will be avalaible here soon: http://kaji-project.github.io"
 
 repo_create-kaji:
-	tools/repo/repo-create.sh $(REPOPATH) debian7 $(CODENAME) $(PUBID)
-	tools/repo/repo-create.sh $(REPOPATH) ubuntu14.04 $(CODENAME) $(PUBID)
+	tools/repo/repo-create-deb.sh $(REPOPATH) debian7 $(CODENAME) $(PUBID)
+	tools/repo/repo-create-deb.sh $(REPOPATH) ubuntu14.04 $(CODENAME) $(PUBID)
+	tools/repo/repo-create-deb.sh $(REPOPATH) ubuntu12.04 $(CODENAME) $(PUBID)
 
 repo_create-plugins:
-	tools/repo/repo-create.sh $(REPOPATH) debian7 plugins $(PUBID)
-	tools/repo/repo-create.sh $(REPOPATH) ubuntu12.04 plugins $(PUBID)
-	tools/repo/repo-create.sh $(REPOPATH) ubuntu14.04 plugins $(PUBID)
+	tools/repo/repo-create-deb.sh $(REPOPATH) debian7 plugins $(PUBID)
+	tools/repo/repo-create-deb.sh $(REPOPATH) ubuntu12.04 plugins $(PUBID)
+	tools/repo/repo-create-deb.sh $(REPOPATH) ubuntu14.04 plugins $(PUBID)
 
 repo_add-debs-kaji:
 	tools/repo/repo-add-debs.sh $(REPOPATH) debian7 $(CODENAME) $(PUBID) /tmp/kaji-project/Debian_7.0/
@@ -126,6 +127,7 @@ repo_add-influxdb:
 repo_rebuild_index:
 	tools/repo/repo-rebuild-index.sh $(REPOPATH) debian7 $(CODENAME)
 	tools/repo/repo-rebuild-index.sh $(REPOPATH) ubuntu14.04 $(CODENAME)
+	tools/repo/repo-rebuild-index.sh $(REPOPATH) ubuntu12.04 $(CODENAME)
 	tools/repo/repo-rebuild-index.sh $(REPOPATH) debian7 plugins
 	tools/repo/repo-rebuild-index.sh $(REPOPATH) ubuntu14.04 plugins
 	tools/repo/repo-rebuild-index.sh $(REPOPATH) ubuntu12.04 plugins
