@@ -7,7 +7,7 @@ REPO_FOLDER=$1
 DISTRO=$2
 SIG_NAME=$3
 
-# bash tools/repo-create-rpm.sh /srv/kaji-repo/ RHEL7 Kaji-Porject
+# bash tools/repo-create-rpm.sh /srv/kaji-repo/ RHEL7 "Kaji Project"
 
 DISTRO_FOLDER="${REPO_FOLDER}/${DISTRO}"
 
@@ -42,11 +42,7 @@ then
 fi
 
 
-if [ ! -d "${DISTRO_FOLDER}"  ]
-then
-    echo "${DISTRO_FOLDER} not a directory, I won't create an empty repo"
-    exit 1
-fi
+mkdir -p "${DISTRO_FOLDER}"
 
 
 ${CREATEREPO} ${DISTRO_FOLDER}

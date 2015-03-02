@@ -7,5 +7,7 @@ KEYID="$4"
 BASEDIR="$1"
 
 mkdir -p $BASEDIR
-wget -P $BASEDIR http://s3.amazonaws.com/influxdb/influxdb_0.8.7_amd64.deb
-wget -P $BASEDIR http://s3.amazonaws.com/influxdb/influxdb_0.8.7_i686.deb
+wget -P $BASEDIR http://get.influxdb.org/influxdb_0.8.8_amd64.deb
+wget -P $BASEDIR http://get.influxdb.org/influxdb_0.8.8_i686.deb
+wget -P $BASEDIR http://get.influxdb.org/influxdb-0.8.8-1.x86_64.rpm
+wget -P $BASEDIR http://get.influxdb.org/influxdb-0.8.8-1.i686.rpm

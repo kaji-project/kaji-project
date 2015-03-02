@@ -11,6 +11,7 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) doc
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) doc
 
 PUBID = 2320E8F8
+PUBNAME = "Kaji Project <contact@kaji-project.org>"
 REPOPATH = /srv/repository/kaji-repo/
 CODENAME = amakuni
 
@@ -91,6 +92,8 @@ repo_create-kaji:
 	tools/repo/repo-create-deb.sh $(REPOPATH) debian7 $(CODENAME) $(PUBID)
 	tools/repo/repo-create-deb.sh $(REPOPATH) ubuntu14.04 $(CODENAME) $(PUBID)
 	tools/repo/repo-create-deb.sh $(REPOPATH) ubuntu12.04 $(CODENAME) $(PUBID)
+	tools/repo-create-rpm.sh $(REPOPATH) centos7 $(PUBNAME)
+	tools/repo-create-rpm.sh $(REPOPATH) centos6 $(PUBNAME)
 
 repo_create-plugins:
 	tools/repo/repo-create-deb.sh $(REPOPATH) debian7 plugins $(PUBID)
@@ -106,11 +109,18 @@ repo_add-debs-plugins:
 	tools/repo/repo-add-debs.sh $(REPOPATH) ubuntu12.04 plugins $(PUBID) /tmp/sfl-monitoring:/monitoring-tools/xUbuntu_12.04/
 	tools/repo/repo-add-debs.sh $(REPOPATH) ubuntu14.04 plugins $(PUBID) /tmp/sfl-monitoring:/monitoring-tools/xUbuntu_14.04/
 
+repo_add_rpms:
+	# Todo : ensure path and add plugin
+	tools/repo/repo-add-rpm.sh $(REPOPATH) centos7 /tmp/kaji-project/centos7/*.rpm
+	tools/repo/repo-add-rpm.sh $(REPOPATH) centos6 /tmp/kaji-project/centos6/*.rpm
+
 repo_fetch-kaji:
+	# Will be replaced by https://github.com/titilambert/joulupukki
 	tools/repo/fetch-obs.sh /tmp kaji-project Debian_7.0
 	tools/repo/fetch-obs.sh /tmp kaji-project xUbuntu_14.04
 
 repo_fetch-plugins:
+	# Will be replaced by https://github.com/titilambert/joulupukki	
 	tools/repo/fetch-obs.sh /tmp "sfl-monitoring:/monitoring-tools" Debian_7.0
 	tools/repo/fetch-obs.sh /tmp "sfl-monitoring:/monitoring-tools" xUbuntu_14.04
 	tools/repo/fetch-obs.sh /tmp "sfl-monitoring:/monitoring-tools" xUbuntu_12.04
@@ -119,10 +129,15 @@ repo_fetch-influxdb:
 	tools/repo/fetch-influxdb.sh /tmp
 
 repo_add-influxdb:
-	tools/repo/repo-add-deb.sh $(REPOPATH) debian7 $(CODENAME) $(PUBID) /tmp/influxdb_0.8.7_amd64.deb
-	tools/repo/repo-add-deb.sh $(REPOPATH) ubuntu14.04 $(CODENAME) $(PUBID) /tmp/influxdb_0.8.7_amd64.deb
-	tools/repo/repo-add-deb.sh $(REPOPATH) debian7 $(CODENAME) $(PUBID) /tmp/influxdb_0.8.7_i686.deb
-	tools/repo/repo-add-deb.sh $(REPOPATH) ubuntu14.04 $(CODENAME) $(PUBID) /tmp/influxdb_0.8.7_i686.deb
+	tools/repo/repo-add-deb.sh $(REPOPATH) debian7 $(CODENAME) $(PUBID) /tmp/influxdb_0.8.8_amd64.deb
+	tools/repo/repo-add-deb.sh $(REPOPATH) ubuntu14.04 $(CODENAME) $(PUBID) /tmp/influxdb_0.8.8_amd64.deb
+	tools/repo/repo-add-deb.sh $(REPOPATH) debian7 $(CODENAME) $(PUBID) /tmp/influxdb_0.8.8_i686.deb
+	tools/repo/repo-add-deb.sh $(REPOPATH) ubuntu14.04 $(CODENAME) $(PUBID) /tmp/influxdb_0.8.8_i686.deb
+	tools/repo/repo-add-rpm.sh $(REPOPATH) centos7 /tmp/influxdb-0.8.8-1.x86_64.rpm
+	tools/repo/repo-add-rpm.sh $(REPOPATH) centos7 /tmp/influxdb_0.8.8-1.i686.rpm
+	tools/repo/repo-add-rpm.sh $(REPOPATH) centos6 /tmp/influxdb-0.8.8-1.x86_64.rpm
+	tools/repo/repo-add-rpm.sh $(REPOPATH) centos6 /tmp/influxdb_0.8.8-1.i686.rpm
+
 
 repo_rebuild_index:
 	tools/repo/repo-rebuild-index.sh $(REPOPATH) debian7 $(CODENAME)
@@ -131,4 +146,5 @@ repo_rebuild_index:
 	tools/repo/repo-rebuild-index.sh $(REPOPATH) debian7 plugins
 	tools/repo/repo-rebuild-index.sh $(REPOPATH) ubuntu14.04 plugins
 	tools/repo/repo-rebuild-index.sh $(REPOPATH) ubuntu12.04 plugins
-
+	tools/repo/repo-sign-rpms.sh $(REPOPATH) centos7
+	tools/repo/repo-sign-rpms.sh $(REPOPATH) centos6
