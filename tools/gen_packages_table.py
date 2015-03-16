@@ -6,70 +6,179 @@ import gzip
 
 import re
 
+from collections import namedtuple
+
+Package = namedtuple("Package", ["version", "parch", "src_ver"])
+
 URL = "http://deb.kaji-project.org"
 
 yum_distro = ["centos6", "centos7"]
 
 deb_distro = ["debian7", "ubuntu12.04", "ubuntu14.04"]
 
+
+# keys : distro::package_arch for yum
+# keys : distro::repo_arch::package_arch for deb
 package_dict = {}
 
 for distro in yum_distro:
     full_path = "/".join((URL, distro, "repodata/primary.xml.gz"))
     primary = gzip.zlib.decompress(urllib.urlopen(full_path).read(), gzip.zlib.MAX_WBITS|32)
     root = ET.fromstring(primary)
+    found_archs = []  # Architecture found in packages : i386, x64 ...
+    packages_to_expand = {}  # Packages to duplicate into found_arch beacause they are all/no_arch/src
+    src_to_map = {}  # Src package found, we need to put src version in the related package
     for package in root:
         name = package[0].text
-        key = "::".join((distro, package[1].text)) #Distro::arch
+        arch = package[1].text
         version = package[2].attrib["ver"]
 
         if name not in package_dict:
             package_dict[name] = {}
 
-        package_dict[name][key] = version
+        if arch == "noarch":
+            packages_to_expand[name] = Package(version, arch, None)
+        elif arch == "src":
+            src_to_map[name] = version
+        else:
+            found_archs.append(arch)
+            key = "::".join((distro, arch))  # Distro::arch
+            package_dict[name][key] = Package(version, arch, None)
+
+    # Duplicate no arch / all.
+    for arch in found_archs:
+        key = "::".join((distro, arch))
+        for name, package in packages_to_expand.items():
+            package_dict[name][key] = package
+
+        for name, version in src_to_map.items():
+            if key in package_dict[name]:
+                old_p = package_dict[name][key]
+                new_p = Package(old_p.version, old_p.parch, version)
+                package_dict[name][key] = new_p
+            else:
+                pass
+                # print "Found source package without actual package %s" % name
+
 
 # http://deb.kaji-project.org/ubuntu12.04/dists/amakuni/main/binary-amd64/Packages
 for distro in deb_distro:
     for release in ["amakuni", "plugins"]:
         for arch in ["amd64", "i386"]:
-             full_path = "/".join((URL, distro, "dists",
+            full_path = "/".join((URL, distro, "dists",
                                    release, "main", "binary-"+arch,
                                    "Packages"))
-             packages_file = urllib.urlopen(full_path)
-             if packages_file.code == 404:
-                 print "SKIPPING %s, url: %s" % ("::".join((distro, release, arch)), full_path)
-                 continue
+            packages_file = urllib.urlopen(full_path)
+            if packages_file.code == 404:
+                #print("SKIPPING %s, url: %s" % ("::".join((distro, release, arch)), full_path))
+                continue
 
-             for line in packages_file.readlines():
-                 matches = re.match("Package: (.*)$", line)
-                 if matches:
+            for line in packages_file.readlines():
+                matches = re.match("Package: (.*)$", line)
+                if matches:
                     name = matches.group(1)
                     continue
 
-                 matches = re.match("Version: (.*)-.*$", line)
-                 if matches:
+                matches = re.match("Version: (.*)-.*$", line)
+                if matches:
                     version = matches.group(1)
                     continue
 
-                 matches = re.match("Architecture: (.*)", line)
-                 if matches:
+                matches = re.match("Architecture: (.*)", line)
+                if matches:
                     parch = matches.group(1)
                     continue
 
-                 #TODO: Source
 
-                 if line.strip() == "":
-                    key = "::".join((distro, arch, parch))
+                if line.strip() == "":
+                    key = "::".join((distro, arch))
 
                     if name not in package_dict:
                         package_dict[name] = {}
 
-                    package_dict[name][key] = version
+                    package_dict[name][key] = Package(version, parch, None)
 
-for name, package in package_dict.items():
-    versions = package.values()
-    if len(set(versions)) > 1:
-        print "Version mismatch for %s:" % name
-        for key, ver in package.items():
-            print "    package: %s, version: %s" % (key, ver)
-        print "====" * 5 
+
+def print_rst_table(table):
+    # table is matrix per line [[L1C1, L1C2], [L2C1,...] ...]
+    max_list = [0] * len(table[0])  # init list with 0 for each column
+    for lines in table:
+        for i in xrange(0, len(lines)):
+            max_list[i] = max(max_list[i], len(lines[i]))
+
+    output = []
+    output.append([("=" * i + "") for i in max_list])
+    output.append([elem + " " * (max_list[j] - len(elem)) for j, elem in enumerate(table[0])])
+    output.append([("=" * i + "") for i in max_list])
+
+    for i in xrange(1, len(table)):
+        output.append([elem + " " * (max_list[j] - len(elem)) for j, elem in enumerate(table[i])])
+        output.append(["\n"])
+
+    output.append([("=" * i + "") for i in max_list])
+
+    for lines in output:
+        for value in lines:
+            print value,
+        print
+
+def build_table_full(package_d):
+    columns = set()
+    for keys in package_d.values():
+        columns.update(keys.keys())
+
+    table = []
+    columns = sorted(list(columns))
+    columns.insert(0, "package-name")
+    #columns.append("github")
+    table.append(columns)
+
+
+    for name, keys in package_d.items():
+        # Package tuple generate 3 lines at once
+        line1 = [name]
+        line2 = [""]
+        line3 = [""]
+        for column in columns[1:]:
+            if column not in keys:
+                line1.append("N/A")
+                line2.append("")
+                line3.append("")
+            else:
+                l1, l2, l3 = package_to_line(keys[column])
+                line1.append(l1)
+                line2.append(l2)
+                line3.append(l3)
+        table.append(line1)
+        table.append(line2)
+        table.append(line3)
+
+    return table
+
+
+def keep_bad_versions(package_d):
+    for name, package in package_d.items():
+        versions = package.values()
+        if len(set(versions)) == 1:
+            del package_dict[name]
+
+
+def package_to_line(package_tuple):
+    lines = []
+    lines.append("version: %s" % package_tuple.version)
+    lines.append("arch: %s" % package_tuple.parch)
+    lines.append("src : %s" % package_tuple.src_ver)
+    return lines
+
+print_rst_table(build_table_full(package_dict))
+
+
+
+
+#for name, package in package_dict.items():
+#    versions = package.values()
+#    if len(set(versions)) > 1:
+#        print("Version mismatch for %s:" % name)
+#        for key, ver in package.items():
+#            print("    package: %s, version: %s" % (key, ver))
+#        print("====" * 5)
