@@ -10,6 +10,7 @@ from collections import namedtuple
 
 Package = namedtuple("Package", ["version", "release", "parch", "src_ver"])
 
+
 def print_rst_table(table):
     # table is matrix per line [[L1C1, L1C2], [L2C1,...] ...]
     max_list = [0] * len(table[0])  # init list with 0 for each column
@@ -17,7 +18,7 @@ def print_rst_table(table):
         for i in xrange(0, len(lines)):
             max_list[i] = max(max_list[i], len(lines[i]))
 
-    output = []
+    output = list()
     output.append([("=" * i + "") for i in max_list])
     output.append([elem + " " * (max_list[j] - len(elem)) for j, elem in enumerate(table[0])])
     output.append([("=" * i + "") for i in max_list])
@@ -33,6 +34,7 @@ def print_rst_table(table):
             print value,
         print
 
+
 def build_table_full(package_d):
     columns = set()
     for keys in package_d.values():
@@ -41,7 +43,7 @@ def build_table_full(package_d):
     table = []
     columns = sorted(list(columns))
     columns.insert(0, "package-name")
-    #columns.append("github")
+    # columns.append("github")
     table.append(columns)
 
     for name, keys in sorted(package_d.iteritems()):
@@ -78,7 +80,7 @@ def keep_bad_versions(package_d):
 
 
 def package_to_line(package_tuple):
-    lines = []
+    lines = list()
     lines.append("version: %s" % package_tuple.version)
     lines.append("release: %s" % package_tuple.release)
     lines.append("arch: %s" % package_tuple.parch)
@@ -86,41 +88,44 @@ def package_to_line(package_tuple):
     return lines
 
 
-def filter_package_by_name(package_d, filter):
+def filter_package_by_name(package_d, name_filter):
     new_package_d = {}
     for name, package in package_d.items():
-        if name.startswith(filter):
+        if name.startswith(name_filter):
             new_package_d[name] = package_d[name]
             del package_d[name]
     return new_package_d
 
-#for name, package in package_dict.items():
-#    versions = package.values()
-#    if len(set(versions)) > 1:
-#        print("Version mismatch for %s:" % name)
-#        for key, ver in package.items():
-#            print("    package: %s, version: %s" % (key, ver))
-#        print("====" * 5)
+
+def print_bad_version(package_d):
+    for name, package in package_d.items():
+        versions = package.values()
+        if len(set(versions)) > 1:
+            print("Version mismatch for %s:" % name)
+            for key, ver in package.items():
+                print("    package: %s, version: %s" % (key, ver))
+            print("====" * 5)
 
 
 def main():
-    URL = "http://deb.kaji-project.org"
+    url = "http://deb.kaji-project.org"
 
     yum_distro = ["centos6", "centos7"]
 
     deb_distro = ["debian7", "ubuntu12.04", "ubuntu14.04"]
-
 
     # keys : distro::package_arch for yum
     # keys : distro::repo_arch::package_arch for deb
     package_dict = {}
 
     for distro in yum_distro:
-        full_path = "/".join((URL, distro, "repodata/primary.xml.gz"))
-        primary = gzip.zlib.decompress(urllib.urlopen(full_path).read(), gzip.zlib.MAX_WBITS|32)
+        full_path = "/".join((url, distro, "repodata/primary.xml.gz"))
+        primary = gzip.zlib.decompress(urllib.urlopen(full_path).read(), gzip.zlib.MAX_WBITS | 32)
         root = ET.fromstring(primary)
         found_archs = []  # Architecture found in packages : i386, x64 ...
-        packages_to_expand = {}  # Packages to duplicate into found_arch beacause they are all/no_arch/src
+
+        # Packages to duplicate into found_arch because they are all/no_arch/src
+        packages_to_expand = {}
         src_to_map = {}  # Src package found, we need to put src version in the related package
         for package in root:
             name = package[0].text
@@ -155,17 +160,17 @@ def main():
                     pass
                     # print "Found source package without actual package %s" % name
 
-
     # http://deb.kaji-project.org/ubuntu12.04/dists/amakuni/main/binary-amd64/Packages
     for distro in deb_distro:
         for release in ["amakuni", "plugins"]:
             for arch in ["amd64", "i386"]:
-                full_path = "/".join((URL, distro, "dists",
-                                       release, "main", "binary-"+arch,
-                                       "Packages"))
+                full_path = "/".join((url, distro, "dists",
+                                      release, "main", "binary-"+arch,
+                                      "Packages"))
                 packages_file = urllib.urlopen(full_path)
                 if packages_file.code == 404:
-                    #print("SKIPPING %s, url: %s" % ("::".join((distro, release, arch)), full_path))
+                    # print("SKIPPING %s, url: %s" \
+                    # % ("::".join((distro, release, arch)), full_path))
                     continue
 
                 for line in packages_file.readlines():
@@ -185,7 +190,6 @@ def main():
                         parch = matches.group(1)
                         continue
 
-
                     if line.strip() == "":
                         key = "::".join((distro, arch))
 
@@ -194,13 +198,9 @@ def main():
 
                         package_dict[name][key] = Package(version, release, parch, None)
 
-
-
     shinken_d = filter_package_by_name(package_dict, "shinken")
     plugins_d = filter_package_by_name(package_dict, "monitoring-plugins")
     packs_d = filter_package_by_name(package_dict, "monitoring-packs")
-
-
 
     print_rst_table(build_table_full(shinken_d))
     print("\n\n")
