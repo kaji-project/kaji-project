@@ -112,7 +112,7 @@ def main():
 
     yum_distro = ["centos6", "centos7"]
 
-    deb_distro = ["debian7", "ubuntu12.04", "ubuntu14.04"]
+    deb_distro = ["debian7", "debian8", "ubuntu12.04", "ubuntu14.04"]
 
     # keys : distro::package_arch for yum
     # keys : distro::repo_arch::package_arch for deb

@@ -17,3 +17,4 @@ Kaji's documentation
    dev
    todo
    knownissues
+   packages

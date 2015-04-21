@@ -1,5 +1,5 @@
 
-SPHINXBUILD   = env-doc/bin/sphinx-build
+SPHINXBUILD   = sphinx-build
 
 BUILDDIR      = build-area/documentation
 
