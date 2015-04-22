@@ -3,6 +3,7 @@
 import urllib
 import xml.etree.ElementTree as ET
 import gzip
+import rpm
 
 import re
 
@@ -137,12 +138,28 @@ def main():
                 package_dict[name] = {}
 
             if arch == "noarch":
+                # if we already found a noarch with the same name and bigger we keep it
+                if name in packages_to_expand and rpm.labelCompare(
+                        ('1', packages_to_expand[name].version, packages_to_expand[name].release),
+                        ('1', version, release)) == 1:
+                    continue
+
                 packages_to_expand[name] = Package(version, release, arch, None)
             elif arch == "src":
+                # if we already found a src version with the same name and a bigger we keep it
+                if name in src_to_map and rpm.labelCompare(
+                        ('1', src_to_map[name], None),
+                        ('1', version, None)) == 1:
+                    continue
                 src_to_map[name] = version
             else:
                 found_archs.append(arch)
                 key = "::".join((distro, arch))  # Distro::arch
+                # if we already have a package for this name and the version is bigger, keep it.
+                if key in package_dict[name] and rpm.labelCompare(
+                        ('1', package_dict[name][key].version, package_dict[name][key].release),
+                        ('1', version, release)) == 1:
+                    continue
                 package_dict[name][key] = Package(version, release, arch, None)
 
         # Duplicate no arch / all.
