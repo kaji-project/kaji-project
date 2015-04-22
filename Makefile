@@ -14,6 +14,7 @@ PUBID = 2320E8F8
 PUBNAME = "Kaji Project <contact@kaji-project.org>"
 REPOPATH = /srv/repository/kaji-repo/
 CODENAME = amakuni
+TMPPATH = /tmp/custom-kaji
 
 
 # Help
@@ -90,6 +91,7 @@ doc_publish: doc_clean doc_html
 
 repo_create-kaji:
 	tools/repo/repo-create-deb.sh $(REPOPATH) debian7 $(CODENAME) $(PUBID)
+	tools/repo/repo-create-deb.sh $(REPOPATH) debian8 $(CODENAME) $(PUBID)
 	tools/repo/repo-create-deb.sh $(REPOPATH) ubuntu14.04 $(CODENAME) $(PUBID)
 	tools/repo/repo-create-deb.sh $(REPOPATH) ubuntu12.04 $(CODENAME) $(PUBID)
 	tools/repo-create-rpm.sh $(REPOPATH) centos7 $(PUBNAME)
@@ -97,33 +99,51 @@ repo_create-kaji:
 
 repo_create-plugins:
 	tools/repo/repo-create-deb.sh $(REPOPATH) debian7 plugins $(PUBID)
+	tools/repo/repo-create-deb.sh $(REPOPATH) debian8 plugins $(PUBID)
 	tools/repo/repo-create-deb.sh $(REPOPATH) ubuntu12.04 plugins $(PUBID)
 	tools/repo/repo-create-deb.sh $(REPOPATH) ubuntu14.04 plugins $(PUBID)
 
 repo_add-debs-kaji:
-	tools/repo/repo-add-debs.sh $(REPOPATH) debian7 $(CODENAME) $(PUBID) /tmp/kaji-project/Debian_7.0/
-	tools/repo/repo-add-debs.sh $(REPOPATH) ubuntu14.04 $(CODENAME) $(PUBID) /tmp/kaji-project/xUbuntu_14.04/
+	# tools/repo/repo-add-debs.sh $(REPOPATH) debian7 $(CODENAME) $(PUBID) /tmp/kaji-project/Debian_7.0/
+	echo "Deprecated for now sorry"
+
+repo_add-one-deb-kaji:
+ifndef PACKAGENAME
+	@echo "ERROR : PLEASE SPECIFY VARIABLE PACKAGENAME" && \
+    echo "Example : make repo_add-one-deb-kaji PACKAGENAME=shinken-common"
+else
+	tools/repo/repo-add-deb.sh $(REPOPATH) ubuntu14.04 plugins $(PUBID) $(TMPPATH)/ubuntu_14.04/$(PACKAGENAME)*.deb
+	tools/repo/repo-add-deb.sh $(REPOPATH) ubuntu12.04 plugins $(PUBID) $(TMPPATH)/ubuntu_12.04/$(PACKAGENAME)*.deb
+	tools/repo/repo-add-deb.sh $(REPOPATH) debian7 plugins $(PUBID) $(TMPPATH)/debian_7/$(PACKAGENAME)*.deb
+	tools/repo/repo-add-deb.sh $(REPOPATH) debian8 plugins $(PUBID) $(TMPPATH)/debian_8/$(PACKAGENAME)*.deb
+endif
+
+repo_add-one-rpm:
+ifndef PACKAGENAME
+	@echo "ERROR : PLEASE SPECIFY VARIABLE PACKAGENAME" && \
+    echo "Example : make repo_add-one-rpm PACKAGENAME=shinken-common"
+else
+	tools/repo/repo-add-rpm.sh $(REPOPATH) centos7 $(TMPPATH)/centos7/$(PACKAGENAME)*.rpm
+	tools/repo/repo-add-rpm.sh $(REPOPATH) centos6 $(TMPPATH)/centos6/$(PACKAGENAME)*.rpm
+endif
 
 repo_add-debs-plugins:
-	tools/repo/repo-add-debs.sh $(REPOPATH) debian7 plugins $(PUBID) /tmp/sfl-monitoring:/monitoring-tools/Debian_7.0/
-	tools/repo/repo-add-debs.sh $(REPOPATH) ubuntu12.04 plugins $(PUBID) /tmp/sfl-monitoring:/monitoring-tools/xUbuntu_12.04/
-	tools/repo/repo-add-debs.sh $(REPOPATH) ubuntu14.04 plugins $(PUBID) /tmp/sfl-monitoring:/monitoring-tools/xUbuntu_14.04/
+	# tools/repo/repo-add-debs.sh $(REPOPATH) ubuntu14.04 plugins $(PUBID) /tmp/sfl-monitoring:/monitoring-tools/xUbuntu_14.04/
+	@echo "Deprecated for now sorry"
 
 repo_add_rpms:
-	# Todo : ensure path and add plugin
-	tools/repo/repo-add-rpm.sh $(REPOPATH) centos7 /tmp/kaji-project/centos7/*.rpm
-	tools/repo/repo-add-rpm.sh $(REPOPATH) centos6 /tmp/kaji-project/centos6/*.rpm
+	# tools/repo/repo-add-rpm.sh $(REPOPATH) centos7 /tmp/kaji-project/centos7/*.rpm
+	@echo "Deprecated for now sorry"
 
 repo_fetch-kaji:
 	# Will be replaced by https://github.com/titilambert/joulupukki
-	tools/repo/fetch-obs.sh /tmp kaji-project Debian_7.0
-	tools/repo/fetch-obs.sh /tmp kaji-project xUbuntu_14.04
+	# tools/repo/fetch-obs.sh /tmp kaji-project xUbuntu_14.04
+	@echo "Deprecated for now sorry"
 
 repo_fetch-plugins:
 	# Will be replaced by https://github.com/titilambert/joulupukki	
-	tools/repo/fetch-obs.sh /tmp "sfl-monitoring:/monitoring-tools" Debian_7.0
-	tools/repo/fetch-obs.sh /tmp "sfl-monitoring:/monitoring-tools" xUbuntu_14.04
-	tools/repo/fetch-obs.sh /tmp "sfl-monitoring:/monitoring-tools" xUbuntu_12.04
+	# tools/repo/fetch-obs.sh /tmp "sfl-monitoring:/monitoring-tools" xUbuntu_12.04
+	@echo "Deprecated for now sorry"
 
 repo_fetch-influxdb:
 	tools/repo/fetch-influxdb.sh /tmp
@@ -141,6 +161,7 @@ repo_add-influxdb:
 
 repo_rebuild_index:
 	tools/repo/repo-rebuild-index.sh $(REPOPATH) debian7 $(CODENAME)
+	tools/repo/repo-rebuild-index.sh $(REPOPATH) debian8 $(CODENAME)
 	tools/repo/repo-rebuild-index.sh $(REPOPATH) ubuntu14.04 $(CODENAME)
 	tools/repo/repo-rebuild-index.sh $(REPOPATH) ubuntu12.04 $(CODENAME)
 	tools/repo/repo-rebuild-index.sh $(REPOPATH) debian7 plugins
