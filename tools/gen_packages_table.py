@@ -219,6 +219,9 @@ def main():
     plugins_d = filter_package_by_name(package_dict, "monitoring-plugins")
     packs_d = filter_package_by_name(package_dict, "monitoring-packs")
 
+    print("Kaji package list")
+    print("=================")
+    print("\n\n")
     print_rst_table(build_table_full(shinken_d))
     print("\n\n")
     print_rst_table(build_table_full(plugins_d))

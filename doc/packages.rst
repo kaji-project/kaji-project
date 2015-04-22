@@ -1,199 +1,216 @@
-========================================= =================== =================== ================= =================== ===================
-package-name                              centos6::x86_64     centos7::x86_64     debian7::amd64    ubuntu12.04::amd64  ubuntu14.04::amd64 
-========================================= =================== =================== ================= =================== ===================
-shinken                                   N/A                 N/A                 version: 2.0.3    version: 2.2        version: 2.2       
+Kaji package list
+=================
 
 
-                                                                                  release: 3kaji0.2 release: 1.5kaji0.2 release: 1.5kaji0.2
 
+========================================= =================== =================== =================== =================== =================== ===================
+package-name                              centos6::x86_64     centos7::x86_64     debian7::amd64      debian8::amd64      ubuntu12.04::amd64  ubuntu14.04::amd64 
+========================================= =================== =================== =================== =================== =================== ===================
+shinken                                   N/A                 N/A                 version: 2.2        version: 2.2        version: 2.2        version: 2.2       
 
-                                                                                  arch: all         arch: all           arch: all          
 
+                                                                                  release: 1.5kaji0.2 release: 1.5kaji0.2 release: 1.5kaji0.2 release: 1.5kaji0.2
 
-                                                                                  src : None        src : None          src : None         
 
+                                                                                  arch: all           arch: all           arch: all           arch: all          
 
-shinken-common                            version: 2.2        version: 2.2        version: 2.0.3    version: 2.2        version: 2.2       
 
+                                                                                  src : None          src : None          src : None          src : None         
 
-                                          release: 1.4kaji0.2 release: 1.4kaji0.2 release: 3kaji0.2 release: 1.5kaji0.2 release: 1.5kaji0.2
 
+shinken-common                            version: 2.2        version: 2.2        version: 2.2        version: 2.2        version: 2.2        version: 2.2       
 
-                                          arch: noarch        arch: noarch        arch: all         arch: all           arch: all          
 
+                                          release: 1.5kaji0.2 release: 1.5kaji0.2 release: 1.5kaji0.2 release: 1.5kaji0.2 release: 1.5kaji0.2 release: 1.5kaji0.2
 
-                                          src : None          src : None          src : None        src : None          src : None         
 
+                                          arch: noarch        arch: noarch        arch: all           arch: all           arch: all           arch: all          
 
-shinken-core                              N/A                 N/A                 N/A               version: 2.2        version: 2.2       
 
+                                          src : None          src : None          src : None          src : None          src : None          src : None         
 
-                                                                                                    release: 1.5kaji0.2 release: 1.5kaji0.2
 
+shinken-core                              N/A                 N/A                 version: 2.2        version: 2.2        version: 2.2        version: 2.2       
 
-                                                                                                    arch: all           arch: all          
 
+                                                                                  release: 1.5kaji0.2 release: 1.5kaji0.2 release: 1.5kaji0.2 release: 1.5kaji0.2
 
-                                                                                                    src : None          src : None         
 
+                                                                                  arch: all           arch: all           arch: all           arch: all          
 
-shinken-doc                               version: 2.0.3      version: 2.2        version: 2.0.3    version: 2.2        version: 2.2       
 
+                                                                                  src : None          src : None          src : None          src : None         
 
-                                          release: 3kaji0.2   release: 1kaji0.2   release: 3kaji0.2 release: 1.5kaji0.2 release: 1.5kaji0.2
 
+shinken-doc                               version: 2.2        version: 2.2        version: 2.2        version: 2.2        version: 2.2        version: 2.2       
 
-                                          arch: noarch        arch: noarch        arch: all         arch: all           arch: all          
 
+                                          release: 1.5kaji0.2 release: 1.5kaji0.2 release: 1.5kaji0.2 release: 1.5kaji0.2 release: 1.5kaji0.2 release: 1.5kaji0.2
 
-                                          src : None          src : None          src : None        src : None          src : None         
 
+                                          arch: noarch        arch: noarch        arch: all           arch: all           arch: all           arch: all          
 
-shinken-mod-booster-nrpe                  version: 1.4.1      version: 1.4.1      version: 1.4.1    version: 1.4.2      version: 1.4.1     
 
+                                          src : None          src : None          src : None          src : None          src : None          src : None         
 
-                                          release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2 release: 1kaji0.2   release: 3kaji0.2  
 
+shinken-mod-booster-nrpe                  version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.2      version: 1.4.1     
 
-                                          arch: noarch        arch: noarch        arch: all         arch: all           arch: all          
 
+                                          release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2   release: 3kaji0.2   release: 1kaji0.2   release: 3kaji0.2  
 
-                                          src : 1.4.1         src : 1.4.1         src : None        src : None          src : None         
 
+                                          arch: noarch        arch: noarch        arch: all           arch: all           arch: all           arch: all          
 
-shinken-mod-graphite                      N/A                 N/A                 N/A               version: 2.0.1      version: 2.0.1     
 
+                                          src : 1.4.1         src : 1.4.1         src : None          src : None          src : None          src : None         
 
-                                                                                                    release: 1          release: 1         
 
+shinken-mod-graphite                      N/A                 N/A                 version: 2.0.1      version: 2.0.1      version: 2.0.1      version: 2.0.1     
 
-                                                                                                    arch: amd64         arch: all          
 
+                                                                                  release: 1          release: 1          release: 1          release: 1         
 
-                                                                                                    src : None          src : None         
 
+                                                                                  arch: all           arch: all           arch: amd64         arch: all          
 
-shinken-mod-influxdb                      version: 0.8        version: 0.8        version: 0.8      N/A                 version: 0.8       
 
+                                                                                  src : None          src : None          src : None          src : None         
 
-                                          release: 2kaji0.2   release: 2kaji0.2   release: 1kaji0.2                     release: 2kaji0.2  
 
+shinken-mod-influxdb                      version: 0.8        version: 0.8        version: 0.8        version: 0.8        version: 0.8        version: 0.8       
 
-                                          arch: noarch        arch: noarch        arch: all                             arch: all          
 
+                                          release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2  
 
-                                          src : 0.8           src : 0.8           src : None                            src : None         
 
+                                          arch: noarch        arch: noarch        arch: all           arch: all           arch: all           arch: all          
 
-shinken-mod-livestatus                    version: 1.0.1      version: 1.0.1      version: 1.0.1    version: 1.4.1      version: 1.4.1     
 
+                                          src : 0.8           src : 0.8           src : None          src : None          src : None          src : None         
 
-                                          release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2 release: 1          release: 1kaji0.2  
 
+shinken-mod-livestatus                    version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1     
 
-                                          arch: noarch        arch: noarch        arch: all         arch: all           arch: all          
 
+                                          release: 1kaji0.2   release: 1kaji0.2   release: 1kaji0.2   release: 1kaji0.2   release: 1kaji0.2   release: 1kaji0.2  
 
-                                          src : 1.0.1         src : 1.0.1         src : None        src : None          src : None         
 
+                                          arch: noarch        arch: noarch        arch: all           arch: all           arch: all           arch: all          
 
-shinken-mod-logstore-null                 N/A                 version: 1.4.1      N/A               N/A                 version: 1.4.1     
 
+                                          src : 1.4.1         src : 1.4.1         src : None          src : None          src : None          src : None         
 
-                                                              release: 2kaji0.2                                         release: 1kaji0.2  
 
+shinken-mod-logstore-null                 version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1     
 
-                                                              arch: noarch                                              arch: all          
 
+                                          release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2  
 
-                                                              src : 1.4.1                                               src : None         
 
+                                          arch: noarch        arch: noarch        arch: all           arch: all           arch: all           arch: all          
 
-shinken-mod-logstore-sqlite               version: 1.4.1      version: 1.4.1      version: 1.4.1    version: 1.4.1      version: 1.4.1     
 
+                                          src : 1.4.1         src : 1.4.1         src : None          src : None          src : None          src : None         
 
-                                          release: 2kaji0.2   release: 2kaji0.2   release: 1kaji0.2 release: 2kaji0.2   release: 2kaji0.2  
 
+shinken-mod-logstore-sqlite               version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1     
 
-                                          arch: noarch        arch: noarch        arch: all         arch: all           arch: all          
 
+                                          release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2  
 
-                                          src : 1.4.1         src : 1.4.1         src : None        src : None          src : None         
 
+                                          arch: noarch        arch: noarch        arch: all           arch: all           arch: all           arch: all          
 
-shinken-mod-named-pipe                    N/A                 N/A                 version: 1.4.1    version: 1.4.1      version: 1.4.1     
 
+                                          src : 1.4.1         src : 1.4.1         src : None          src : None          src : None          src : None         
 
-                                                                                  release: 2        release: 2          release: 2         
 
+shinken-mod-named-pipe                    N/A                 N/A                 version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1     
 
-                                                                                  arch: all         arch: all           arch: all          
 
+                                                                                  release: 4          release: 4          release: 4          release: 4         
 
-                                                                                  src : None        src : None          src : None         
 
+                                                                                  arch: all           arch: all           arch: all           arch: all          
 
-shinken-mod-npcdmod                       N/A                 N/A                 N/A               version: 1.0.1      N/A                
 
+                                                                                  src : None          src : None          src : None          src : None         
 
-                                                                                                    release: 1                             
 
+shinken-mod-npcdmod                       N/A                 N/A                 version: 1.0.1      version: 1.0.1      version: 1.0.1      version: 1.0.1     
 
-                                                                                                    arch: all                              
 
+                                                                                  release: 2          release: 2          release: 2          release: 2         
 
-                                                                                                    src : None                             
 
+                                                                                  arch: all           arch: all           arch: all           arch: all          
 
-shinken-mod-nsca                          N/A                 N/A                 N/A               version: 1.4.1      N/A                
 
+                                                                                  src : None          src : None          src : None          src : None         
 
-                                                                                                    release: 1                             
 
+shinken-mod-nsca                          N/A                 N/A                 version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1     
 
-                                                                                                    arch: amd64                            
 
+                                                                                  release: 1          release: 1          release: 1          release: 1         
 
-                                                                                                    src : None                             
 
+                                                                                  arch: all           arch: all           arch: amd64         arch: all          
 
-shinken-mod-pickle-retention-file-generic version: 1.4.1      version: 1.4.1      version: 1.4.1    version: 1.4.1      version: 1.4.1     
 
+                                                                                  src : None          src : None          src : None          src : None         
 
-                                          release: 2kaji0.2   release: 2kaji0.2   release: 2kaji0.2 release: 3kaji0.2   release: 2kaji0.2  
 
+shinken-mod-pickle-retention-file-generic version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1     
 
-                                          arch: noarch        arch: noarch        arch: all         arch: all           arch: all          
 
+                                          release: 4kaji0.2   release: 4kaji0.2   release: 4kaji0.2   release: 4kaji0.2   release: 4kaji0.2   release: 4kaji0.2  
 
-                                          src : 1.4.1         src : 1.4.1         src : None        src : None          src : None         
 
+                                          arch: noarch        arch: noarch        arch: all           arch: all           arch: all           arch: all          
 
-shinken-mod-simple-log                    version: 1.4.1      version: 1.4.1      version: 1.4.1    version: 1.4.1      version: 1.4.1     
 
+                                          src : 1.4.1         src : 1.4.1         src : None          src : None          src : None          src : None         
 
-                                          release: 2kaji0.2   release: 2kaji0.2   release: 1kaji0.2 release: 2          release: 2         
 
+shinken-mod-simple-log                    version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1      version: 1.4.1     
 
-                                          arch: noarch        arch: noarch        arch: all         arch: all           arch: all          
 
+                                          release: 3kaji0.2   release: 3kaji0.2   release: 3kaji0.2   release: 3kaji0.2   release: 3kaji0.2   release: 3kaji0.2  
 
-                                          src : 1.4.1         src : 1.4.1         src : None        src : None          src : None         
 
+                                          arch: noarch        arch: noarch        arch: all           arch: all           arch: all           arch: all          
 
-shinken-mod-snmpbooster                   version: 1.99.13    version: 1.99.13    N/A               N/A                 N/A                
 
+                                          src : 1.4.1         src : 1.4.1         src : None          src : None          src : None          src : None         
 
-                                          release: 1          release: 1                                                                   
 
+shinken-mod-snmpbooster                   version: 1.99.13    version: 1.99.13    version: 1.99.13    version: 1.99.13    version: 1.99.13    version: 1.99.13   
 
-                                          arch: noarch        arch: noarch                                                                 
 
+                                          release: 2          release: 2          release: 2          release: 2          release: 2          release: 2         
 
-                                          src : 1.99.13       src : 1.99.13                                                                
 
+                                          arch: noarch        arch: noarch        arch: all           arch: all           arch: all           arch: all          
 
-========================================= =================== =================== ================= =================== ===================
+
+                                          src : 1.99.13       src : 1.99.13       src : None          src : None          src : None          src : None         
+
+
+shinken-mod-snmpbooster-doc               N/A                 N/A                 version: 1.99.13    version: 1.99.13    version: 1.99.13    version: 1.99.13   
+
+
+                                                                                  release: 2          release: 2          release: 2          release: 2         
+
+
+                                                                                  arch: all           arch: all           arch: all           arch: all          
+
+
+                                                                                  src : None          src : None          src : None          src : None         
+
+
+========================================= =================== =================== =================== =================== =================== ===================
 
 
 
