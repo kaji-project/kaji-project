@@ -112,10 +112,10 @@ ifndef PACKAGENAME
 	@echo "ERROR : PLEASE SPECIFY VARIABLE PACKAGENAME" && \
     echo "Example : make repo_add-one-deb-kaji PACKAGENAME=shinken-common"
 else
-	tools/repo/repo-add-deb.sh $(REPOPATH) ubuntu14.04 plugins $(PUBID) $(TMPPATH)/ubuntu_14.04/$(PACKAGENAME)*.deb
-	tools/repo/repo-add-deb.sh $(REPOPATH) ubuntu12.04 plugins $(PUBID) $(TMPPATH)/ubuntu_12.04/$(PACKAGENAME)*.deb
-	tools/repo/repo-add-deb.sh $(REPOPATH) debian7 plugins $(PUBID) $(TMPPATH)/debian_7/$(PACKAGENAME)*.deb
-	tools/repo/repo-add-deb.sh $(REPOPATH) debian8 plugins $(PUBID) $(TMPPATH)/debian_8/$(PACKAGENAME)*.deb
+	tools/repo/repo-add-deb.sh $(REPOPATH) ubuntu14.04 $(CODENAME) $(PUBID) $(TMPPATH)/ubuntu_14.04/$(PACKAGENAME)*.deb
+	tools/repo/repo-add-deb.sh $(REPOPATH) ubuntu12.04 $(CODENAME) $(PUBID) $(TMPPATH)/ubuntu_12.04/$(PACKAGENAME)*.deb
+	tools/repo/repo-add-deb.sh $(REPOPATH) debian7 $(CODENAME) $(PUBID) $(TMPPATH)/debian_7/$(PACKAGENAME)*.deb
+	tools/repo/repo-add-deb.sh $(REPOPATH) debian8 $(CODENAME) $(PUBID) $(TMPPATH)/debian_8/$(PACKAGENAME)*.deb
 endif
 
 repo_add-one-rpm:
@@ -123,8 +123,8 @@ ifndef PACKAGENAME
 	@echo "ERROR : PLEASE SPECIFY VARIABLE PACKAGENAME" && \
     echo "Example : make repo_add-one-rpm PACKAGENAME=shinken-common"
 else
-	tools/repo/repo-add-rpm.sh $(REPOPATH) centos7 $(TMPPATH)/centos7/$(PACKAGENAME)*.rpm
-	tools/repo/repo-add-rpm.sh $(REPOPATH) centos6 $(TMPPATH)/centos6/$(PACKAGENAME)*.rpm
+	tools/repo/repo-add-rpm.sh $(REPOPATH) centos7 '$(TMPPATH)/centos7/$(PACKAGENAME)*.rpm'
+	tools/repo/repo-add-rpm.sh $(REPOPATH) centos6 '$(TMPPATH)/centos6/$(PACKAGENAME)*.rpm'
 endif
 
 repo_add-debs-plugins:
@@ -132,7 +132,7 @@ repo_add-debs-plugins:
 	@echo "Deprecated for now sorry"
 
 repo_add_rpms:
-	# tools/repo/repo-add-rpm.sh $(REPOPATH) centos7 /tmp/kaji-project/centos7/*.rpm
+	# tools/repo/repo-add-rpm.sh $(REPOPATH) centos7 '/tmp/kaji-project/centos7/*.rpm'
 	@echo "Deprecated for now sorry"
 
 repo_fetch-kaji:
