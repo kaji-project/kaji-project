@@ -36,16 +36,12 @@ RUN echo kaji:kaji | chpasswd
 ###### STABLE REPOSITORY
 RUN gpg --recv-keys  --keyserver pgp.mit.edu 2320E8F8 && gpg --export --armor 2320E8F8 | apt-key add -
 RUN echo 'deb http://deb.kaji-project.org/ubuntu14.04/ amakuni main' >> /etc/apt/sources.list.d/kaji.list
-RUN apt-get update
-
 
 ### Installation
 
-RUN apt-get install -y kaji
+RUN apt-get update && apt-get install -y kaji supervisor
 
 ### Supervisor
-
-RUN apt-get -y install supervisor
 
 RUN echo '[supervisord]' > /etc/supervisor/conf.d/supervisor.conf
 RUN echo 'nodaemon=true' >> /etc/supervisor/conf.d/supervisor.conf
